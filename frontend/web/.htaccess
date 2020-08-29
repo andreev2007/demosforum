@@ -1,0 +1,21 @@
+RewriteEngine On
+
+RewriteBase / 
+#RewriteCond %{REQUEST_URI} ^[^A-Z]*[A-Z].*
+#RewriteRule ^ ${lc:%{REQUEST_URI}} [L,R=301]
+
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule ^(.*)$ http://%1/$1 [L,R=301] 
+
+# если это папка или файл, открываем его
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# в противном случае перенаправляем на index.php
+RewriteRule . index.php
+
+
+RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+
