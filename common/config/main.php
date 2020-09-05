@@ -14,12 +14,6 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
-        'languagepicker' => [
-            'class' => 'lajax\languagepicker\Component',
-            'languages' => ['en' => 'English', 'es' => 'Español', 'ru' => 'Русский'],
-            'cookieName' => 'language',
-            'expireDays' => 64,
-        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],

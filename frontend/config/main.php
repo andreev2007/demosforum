@@ -34,6 +34,12 @@ return [
                 ],
             ],
         ],
+        'languagepicker' => [
+            'class' => 'lajax\languagepicker\Component',
+            'languages' => ['en' => 'English', 'es' => 'Español', 'ru' => 'Русский'],
+            'cookieName' => 'language',
+            'expireDays' => 64,
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
