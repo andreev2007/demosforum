@@ -15,13 +15,13 @@ $this->title = Yii::t('app', 'Login');
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p><?= \Yii::t('app', 'Please fill the fields below to login'); ?>:</p>
+    <?= yii\authclient\widgets\AuthChoice::widget([
+        'baseAuthUrl' => ['site/auth'],
+        'popupMode' => false,
+    ]) ?>
 
     <div class="row">
         <div class="col-lg-5">
-            <?= yii\authclient\widgets\AuthChoice::widget([
-                'baseAuthUrl' => ['site/auth'],
-                'popupMode' => false,
-            ]) ?>
 
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
