@@ -5,7 +5,6 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
-    'bootstrap' => ['languagepicker'],
     'modules' => [
         'redactor' => 'yii\redactor\RedactorModule',
         'class' => 'yii\redactor\RedactorModule',
