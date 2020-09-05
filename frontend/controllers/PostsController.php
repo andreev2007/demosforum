@@ -93,7 +93,7 @@ class PostsController extends Controller
             ->andWhere(['parent_id' => null])->orderBy(['created_at' => SORT_DESC])->all();
 
         if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
-            Yii::$app->session->setFlash('success', ' Комментарий успешно сохранен!');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'The comment is successfully added!'));
             return $this->refresh();
         } else {
             Yii::error($comment->errors);

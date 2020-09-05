@@ -19,7 +19,7 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=5.6.0",
+    "php": ">=7.0",
     "yiisoft/yii2": "~2.0.14",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "^2.1",
@@ -36,7 +36,15 @@
     "2amigos/yii2-switch-widget": "~1.0",
     "nick-denry/yii2-filter-action-column": "^0.1.2",
     "la-haute-societe/yii2-save-relations-behavior": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "cetver/yii2-language-selector": "^1.0",
+    "kmergen/yii2-language-switcher": "dev-master",
+    "kartik-v/yii2-editors": "@dev",
+    "froala/yii2-froala-editor": "^3.2",
+    "yiidoc/yii2-redactor": "*",
+    "lajax/yii2-language-picker": "1.*",
+    "yiisoft/yii2-authclient": "^2.2",
+    "web-token/jwt-checker": "^2.2"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

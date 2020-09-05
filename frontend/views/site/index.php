@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use common\models\User;
+use kartik\editors\Summernote;
 use mihaildev\ckeditor\CKEditor;
 use vova07\imperavi\Widget;
 use yii\grid\GridView;
@@ -13,7 +14,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
 
 $user = new User();
-$this->title = 'Главная';
+$this->title = Yii::t('app', 'Home');
 ?>
 <div class="site-index">
     <div class="body-content">
@@ -21,31 +22,32 @@ $this->title = 'Главная';
         <div class="row">
             <div class="col-lg-12 m-class">
                 <?php if (!Yii::$app->user->isGuest) { ?>
-                    <h2>Что хотите написать, <?= $user->getName() ?>?</h2>
+                    <h3 style="color: #2f2e2e"><?= Yii::t('app', 'What do you want to write,') ?> <?= $user->getName() ?>
+                        ?</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+                        <div class="row mt-3">
+                            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                                <?= $form->field($post, 'content')->widget(\yii\redactor\widgets\Redactor::className(),
+                                    [
+                                        'clientOptions' => [
+                                            'placeholder' => Yii::t('app', 'Edit your content here...')
+                                        ],
+                                    ])->label(false); ?>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
+                                    <?= Html::submitButton(Yii::t('app', 'Publish') . '<i class="fab fa-telegram-plane ml-1"></i>', ['class' => 'btn btn-success mb-1 btn-sm']) ?>
+                                </div>
+                            </div>
+                        </div>
 
-                    <?= $form->field($post, 'name')->textInput(); ?>
-
-                    <?= $form->field($post, 'description')->widget(CKEditor::className(), [
-                        'editorOptions' => [
-                            'preset' => 'full',
-                            'lang' => 'ru',
-                            'inline' => false,
-                            'height' => '150'
-                        ],
-                    ]); ?>
-
-                    <?= $form->field($post, 'imageUpload')->fileInput(); ?>
-
-                    <div class="form-group">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+                        <?php ActiveForm::end(); ?>
                     </div>
-                    <?php ActiveForm::end(); ?>
-
                 <?php } ?>
 
-                <div class="col-4">
+                <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
                     <?php $form = ActiveForm::begin([
                         'action' => '/',
                         'options' =>
@@ -55,10 +57,10 @@ $this->title = 'Главная';
                         'method' => "GET",
                     ]); ?>
                     <?= $form->field($searchModel, 'period')->dropDownList([
-                        null => 'За все время',
-                        3600 * 24 => 'За день',
-                        3600 * 168 => 'За неделю',
-                        3600 * 720 => 'За месяц',
+                        null => Yii::t('app', 'All time'),
+                        3600 * 24 => Yii::t('app', 'Day'),
+                        3600 * 168 => Yii::t('app', 'Week'),
+                        3600 * 720 => Yii::t('app', 'Month'),
                     ], [
                         'onchange' => 'document.getElementById("search-form").submit()',
                     ]); ?>
@@ -71,15 +73,15 @@ $this->title = 'Главная';
                 <?php foreach ($posts as $question): ?>
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <div class="[ panel panel-default ] panel-google-plus">
-                            <img src="<?= $question->image ?>" style="width: 100%;" alt="">
                             <div class="panel-heading">
-                                <h4>
-                                    <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/posts/view', 'id' => $question->id])) ?>"><?= $question->name ?></a>
-                                </h4>
+                                <a style="font-size: 110%; color: #504e4e; font-weight: 500"
+                                   href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
+                                    <?= mb_strimwidth($question->content, 0, 200, "..."); ?>
+                                </a>
                                 <h3>
-                                    Автор:
+                                    <?= Yii::t('app', 'Author') ?>:
                                     <?php if ($question->user->id === Yii::$app->user->id) { ?>
-                                        Вы
+                                        <?= Yii::t('app','You') ?>
                                     <?php } else { ?>
                                         <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $question->user->id])) ?>">
 
@@ -87,12 +89,7 @@ $this->title = 'Главная';
                                         </a>
                                     <?php } ?>
                                 </h3>
-                                <h5><span>Дата</span> - <span><?= $question->getDate() ?></span></h5>
-                            </div>
-                            <div class="panel-body">
-                                <p style="font-size: 110%; color: #504e4e; font-weight: 500">
-                                    <?= mb_strimwidth($question->description, 0, 200, "..."); ?>
-                                </p>
+                                <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $question->getDate() ?></span></h5>
                             </div>
                             <?php if (!Yii::$app->user->isGuest) { ?>
                                 <div class="panel-footer">
@@ -135,7 +132,7 @@ $this->title = 'Главная';
                                            style="margin-right: 2px;"></i>
                                     </div>
                                     <a class="[ btn btn-default ]" style="float: right"
-                                         href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
+                                       href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
                                         <i class="far fa-comment-alt"></i> <?= $question->getComments()->count() ?>
                                     </a>
                                 </div>

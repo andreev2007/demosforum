@@ -1,24 +1,11 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\Comments;
-use common\models\Posts;
 use common\models\Subscriber;
 use common\models\User;
-use frontend\models\ResendVerificationEmailForm;
-use frontend\models\VerifyEmailForm;
 use Yii;
-use yii\base\InvalidArgumentException;
 use yii\data\ActiveDataProvider;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
@@ -27,37 +14,6 @@ use yii\web\Response;
  */
 class ProfileController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     public function actionView($id)
     {
         $user = User::findOne($id);
@@ -67,17 +23,53 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function actionUpdate()
+    public function actionLiked()
     {
-        /** @var User $model */
-        $model = Yii::$app->user->identity;
+        $user = Yii::$app->user->identity;
+        $dataProvider = new ActiveDataProvider(
+            [
+                'query' =>  $user->getLikedPosts()
+            ]
+        );
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        return $this->render('liked', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSettings(){
+        $user = User::findOne(Yii::$app->user->id);
+
+        return $this->render('settings', [
+            'user' => $user
+        ]);
+    }
+
+    public function actionStarred()
+    {
+        $user = Yii::$app->user->identity;
+        $dataProvider = new ActiveDataProvider(
+            [
+                'query' =>  $user->getStarredPosts()
+            ]
+        );
+
+        return $this->render('starred', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $user = User::findOne($id);
+
+        if ($user->load(Yii::$app->request->post()) && $user->save()) {
+            return $this->redirect(['view', 'id' => $user->id]);
         }
-
         return $this->render('update', [
-            'model' => $model,
+            'model' => $user
         ]);
     }
 

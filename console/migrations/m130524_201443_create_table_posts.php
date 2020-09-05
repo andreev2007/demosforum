@@ -14,8 +14,7 @@ class m130524_201443_create_table_posts extends Migration
 
         $this->createTable('{{%posts}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull()->comment('Заголовок'),
-            'description' => $this->text()->notNull()->comment('Описание'),
+            'content' => $this->text()->notNull(),
             'image' => $this->string()->comment('Картинка'),
             'status' => $this->integer()->comment('Статус')->defaultValue(10),
             'like_id' => $this->integer()->comment('Лайк'),

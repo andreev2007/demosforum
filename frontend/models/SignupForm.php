@@ -13,9 +13,14 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
-    public $verifyCode;
 
-
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('app', 'Username'),
+            'password' => Yii::t('app', 'Password'),
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -26,7 +31,6 @@ class SignupForm extends Model
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 4, 'max' => 255],
-            ['verifyCode', 'captcha'],
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -36,14 +40,6 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
-        ];
-    }
-
-
-    public function attributeLabels()
-    {
-        return [
-            'verifyCode' => 'Верификационный код',
         ];
     }
 
@@ -61,7 +57,7 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->status = User::STATUS_ACTIVE;
+        $user->status = User::STATUS_INACTIVE;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();

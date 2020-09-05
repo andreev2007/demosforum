@@ -4,6 +4,7 @@ use common\models\User;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
@@ -13,47 +14,58 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>
-<h1 class="m-class">Профиль</h1>
+<h1 class="m-class"><?= Yii::t('app', 'Profile') ?></h1>
 <div class="m-class" style="margin-bottom: 1rem;">
-    <h6 class="profile-count-posts">Количество записей: <?= count($user->posts) ?></h6>
+    <h6 class="profile-count-posts"><?= Yii::t('app', 'Number of records') ?>: <?= count($user->posts) ?></h6>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><?= Html::encode($user->username) ?></h5>
-                    <p class="card-text">Постов: <?= $user->getPosts()->count() ?></p>
+                    <div class="block-header">
+                        <?php if ($user->avatar) { ?>
+                            <img class="profile-image" src="<?= $user->avatar ?>" alt="">
+                        <?php } else { ?>
+                            <div class="avatar">
+                                <i class="fas fa-user-alt"></i>
+                            </div>
+                        <?php } ?>
+
+                        <h5 class="card-title profile-name"><?= Html::encode($user->username) ?></h5>
+                    </div>
                     <div class="subscription-block">
-                        <span class="card-text">Подписчиков: <span
+                        <span class="card-text"><?= Yii::t('app', 'Subscribers') ?>: <span
                                     class="subscribers-count"><?= $user->getSubscribersCount() ?></span></span>
-                        <span class="card-text">Подписок: <span
+                        <span class="card-text"><?= Yii::t('app', 'Subscribed') ?>: <span
                                     class="subscribed-count"><?= $user->getSubscribedCount() ?></span></span>
                     </div>
                     <div style="display: flex;" class="justify-content-between">
                         <?php if (Yii::$app->user->id === $user->id) { ?>
                             <div>
-                                <?= Html::a('Обновить', ['update'], ['class' => 'btn btn-primary']) ?>
+                                <?= Html::a(Yii::t('app', 'Update'), ['update'], ['class' => 'btn btn-primary']) ?>
                             </div>
                         <?php } ?>
                         <?php if (!Yii::$app->user->isGuest) { ?>
-                        <div>
-                            <?php if (User::isSubscribed($user->id) === $user->id && $user->id !== Yii::$app->user->id) { ?>
-                                <button class="btn btn-outline-danger subscribe"
-                                        data-user_id="<?= $user->id; ?>"
-                                        data-subscribers_count='<?= $user->getSubscribersCount() ?>'
-                                >
-                                    Подписаться
-                                </button>
-                            <?php } elseif (User::isSubscribed($user->id) !== $user->id) { ?>
-                                <button class="btn btn-secondary subscribed"
-                                        data-user_id="<?= $user->id; ?>"
-                                        data-subscribers_count='<?= $user->getSubscribersCount() ?>'
-                                >
-                                    Отписаться
-                                </button>
+                            <?php if ($user->id !== Yii::$app->user->id) { ?>
+                                <div>
+                                    <?php if (User::isSubscribed($user->id) === $user->id) { ?>
+                                        <button class="btn btn-outline-danger subscribe"
+                                                data-user_id="<?= $user->id; ?>"
+                                                data-subscribers_count='<?= $user->getSubscribersCount() ?>'
+                                        >
+                                            Подписаться
+                                        </button>
+                                    <?php } elseif (User::isSubscribed($user->id) !== $user->id) { ?>
+                                        <button class="btn btn-secondary subscribed"
+                                                data-user_id="<?= $user->id; ?>"
+                                                data-subscribers_count='<?= $user->getSubscribersCount() ?>'
+                                        >
+                                            Отписаться
+                                        </button>
+                                    <?php } ?>
+                                </div>
                             <?php } ?>
-                        </div>
                         <?php } ?>
                     </div>
                 </div>
@@ -64,16 +76,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($user->posts as $question): ?>
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <h4>
-                            <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/posts/view', 'id' => $question->id])) ?>"><?= $question->name ?></a>
-                        </h4>
-                        <h5><span>Дата</span> - <span><?= $question->getDate() ?></span></h5>
-                    </div>
-                    <div class="panel-body">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
-                            <?= mb_strimwidth($question->description, 0, 200, "..."); ?>
-
-                        </p>
+                        <a style="font-size: 110%; color: #504e4e; font-weight: 500"
+                           href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
+                            <?= mb_strimwidth($question->content, 0, 200, "..."); ?>
+                        </a>
+                        <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $question->getDate() ?></span></h5>
                     </div>
                     <?php if (!Yii::$app->user->isGuest) { ?>
                         <div class="panel-footer">

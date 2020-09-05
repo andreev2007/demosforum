@@ -23,11 +23,12 @@ class Notifications extends \yii\db\ActiveRecord
     public static function map()
     {
         return [
-            'post_like' => 'Лайк',
-            'repost' => 'Репост',
-            'comment' => 'Комментарий',
+            'post_like' => Yii::t('app', 'Like'),
+            'repost' => Yii::t('app', 'Repost'),
+            'comment' => Yii::t('app', 'Comment'),
         ];
     }
+
 
     public function behaviors()
     {
@@ -92,8 +93,8 @@ class Notifications extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Тип',
-            'post_id' => 'Пост',
+            'type' => Yii::t('app', 'Type'),
+            'post_id' => Yii::t('app', 'Post'),
             'is_read' => 'Прочитано',
             'created_at' => 'Создано в',
             'created_by' => 'Created By',

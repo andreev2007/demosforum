@@ -20,7 +20,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use app\components\AuthHandler;
 /**
  * Site controller
  */
@@ -35,14 +35,19 @@ class SiteController extends Controller
                 'path' => '@frontend/web/images', // Or absolute path to directory where files are stored.
                 'options' => ['only' => ['*.jpg', '*.jpeg', '*.png']], // These options are by default.
             ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
         ];
+    }
+
+    public function onAuthSuccess($client)
+    {
+        (new AuthHandler($client))->handle();
     }
 
     /**
@@ -75,6 +80,7 @@ class SiteController extends Controller
             ],
         ];
     }
+
 
     /**
      * Displays homepage.

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Posts */
 
-$this->title = $model->name;
+$this->title = strip_tags(strip_tags($model->content));
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
@@ -18,15 +18,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
-                    <img src="<?= $model->image ?>" style="width: 100%;" alt="">
                     <div class="panel-heading">
-                        <h4>
-                            <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/posts/view', 'id' => $model->id])) ?>"><?= $model->name ?></a>
-                        </h4>
+                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
+                            <?= strip_tags(strip_tags($model->content)) ?>
+                        </p>
                         <h3>
-                            Автор:
+                            <?= Yii::t('app', 'Author') ?>:
                             <?php if ($model->user->id === Yii::$app->user->id) { ?>
-                                Вы
+                                <?= Yii::t('app','You') ?>
                             <?php } else { ?>
                                 <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $model->user->id])) ?>">
 
@@ -34,12 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </a>
                             <?php } ?>
                         </h3>
-                        <h5><span>Дата</span> - <span><?= $model->getDate() ?></span></h5>
-                    </div>
-                    <div class="panel-body">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
-                            <?= $model->description ?>
-                        </p>
+                        <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $model->getDate() ?></span></h5>
                     </div>
                     <?php if (!Yii::$app->user->isGuest) { ?>
                         <div class="panel-footer">
@@ -93,8 +87,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php if (Yii::$app->user->id === $model->user->id) { ?>
             <p>
-                <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => 'Are you sure you want to delete this item?',

@@ -12,7 +12,7 @@ $user = new User();
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= \yii\helpers\Url::toRoute(['/']) ?>" class="nav-link">Главная</a>
+            <a href="<?= \yii\helpers\Url::toRoute(['/']) ?>" class="nav-link"><?= Yii::t('app', 'Home') ?></a>
         </li>
     </ul>
 

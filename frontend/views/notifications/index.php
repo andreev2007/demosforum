@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\NotificationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Уведомления';
+$this->title = Yii::t('app', 'Notifications');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="notifications-index m-class">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'attribute' => 'post_id',
                 'value' => function ($model) {
-                    return Html::a(mb_strimwidth($model->post->name, 0, 30, "..."), ['/posts/view', 'id' => $model->id]);
+                    return Html::a(mb_strimwidth($model->post->content, 0, 30, "..."), ['/posts/view', 'id' => $model->id]);
                 },
             ],
         ],

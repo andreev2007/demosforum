@@ -4,7 +4,7 @@ use common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Понравившееся'
+$this->title = Yii::t('app','Liked')
 ?>
 
     <div class="container">
@@ -14,13 +14,14 @@ $this->title = 'Понравившееся'
                 <div class="[ col-xs-12 col-sm-12 ]">
                     <div class="[ panel panel-default ] panel-google-plus">
                         <div class="panel-heading">
-                            <h4>
-                                <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/posts/view', 'id' => $post->id])) ?>"><?= $post->name ?></a>
-                            </h4>
+                            <a style="font-size: 110%; color: #504e4e; font-weight: 500"
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
+                                <?= mb_strimwidth($post->content, 0, 200, "..."); ?>
+                            </a>
                             <h3>
-                                Автор:
+                                <?= Yii::t('app', 'Author') ?>:
                                 <?php if ($post->user->id === Yii::$app->user->id) { ?>
-                                    Вы
+                                    <?= Yii::t('app', 'You') ?>
                                 <?php } else { ?>
                                     <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $post->user->id])) ?>">
 
@@ -28,12 +29,7 @@ $this->title = 'Понравившееся'
                                     </a>
                                 <?php } ?>
                             </h3>
-                            <h5><span>Дата</span> - <span><?= $post->getDate() ?></span></h5>
-                        </div>
-                        <div class="panel-body">
-                            <p style="font-size: 110%; color: #504e4e; font-weight: 500">
-                                <?= mb_strimwidth($post->description, 0, 200, "..."); ?>
-                            </p>
+                            <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $post->getDate() ?></span></h5>
                         </div>
                         <div class="panel-footer">
                             <button type="button"

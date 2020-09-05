@@ -9,12 +9,12 @@ use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Signup';
+$this->title = Yii::t('app', 'Signup Form');
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Yii::t('app', 'Registration') ?></h1>
 
-    <p>Пожалуйста заполните следующие поля для регистрации:</p>
+    <p><?= \Yii::t('app', 'Please fill the fields below to signup'); ?>:</p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -26,11 +26,8 @@ $this->title = 'Signup';
 
             <?= $form->field($model, 'password')->passwordInput() ?>
 
-            <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-            ]) ?>
             <div class="form-group">
-                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Signup'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

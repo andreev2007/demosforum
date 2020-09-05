@@ -8,18 +8,18 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Связаться';
+$this->title = Yii::t('app','Contact');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact m-class">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        Если у вас есть какие-то вопросы пожалуйста обращайтесь:
+        <?= Yii::t('app', 'If you have any questions please contact') ?>:
     </p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-6">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
                 <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
@@ -28,12 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
-
                 <div class="form-group">
-                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>

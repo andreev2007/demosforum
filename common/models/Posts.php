@@ -16,8 +16,7 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * This is the model class for table "posts".
  *
  * @property int $id
- * @property string $name Имя
- * @property string $description Описание
+ * @property string $content Описание
  * @property string|null $image Картинка
  * @property int|null $likes Лайки
  * @property int $created_by
@@ -34,6 +33,10 @@ class Posts extends \yii\db\ActiveRecord
 {
     private $filePath = '';
     public $imageUpload;
+    /**
+     * @var mixed|null
+     */
+    public $thumb;
 
     public function behaviors()
     {
@@ -89,9 +92,9 @@ class Posts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
+            [['content'], 'required'],
             [['created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['name'], 'string', 'max' => 100],
+            [['content'], 'string', 'max' => 1000],
             [['reposters', 'image','thumb'], 'safe'],
             ['imageUpload', 'file', 'extensions' => 'jpeg, jpg, png', 'on' => ['insert', 'update']],
         ];
@@ -104,10 +107,9 @@ class Posts extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название',
-            'description' => 'Описание',
-            'image' => 'Картинка',
-            'imageUpload' => 'Загрузить картинку',
+            'content' => Yii::t('app', 'Description'),
+            'image' => Yii::t('app', 'Image'),
+            'imageUpload' => Yii::t('app', 'Upload Image'),
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
             'created_at' => 'Created At',

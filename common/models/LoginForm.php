@@ -14,7 +14,6 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
-    public $verifyCode;
     private $_user;
 
 
@@ -24,12 +23,8 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
             [['username', 'password'], 'required'],
-            ['verifyCode', 'captcha'],
-            // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
@@ -38,7 +33,9 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'verifyCode' => 'Проверочный код',
+            'username' => \Yii::t('app', 'Username'),
+            'password' => \Yii::t('app', 'Password'),
+            'rememberMe' => \Yii::t('app', 'Remember Me'),
         ];
     }
 

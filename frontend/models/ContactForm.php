@@ -14,7 +14,6 @@ class ContactForm extends Model
     public $email;
     public $subject;
     public $body;
-    public $verifyCode;
 
     /**
      * {@inheritdoc}
@@ -22,12 +21,8 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            // name, email, subject and body are required
             [['name', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
             ['email', 'email'],
-            // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -37,10 +32,9 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'verifyCode' => 'Проверочный код',
-            'name' => 'Название',
-            'subject' => 'Причина',
-            'body' => 'Описание',
+            'name' => Yii::t('app', 'Name'),
+            'subject' => Yii::t('app', 'Subject'),
+            'body' => Yii::t('app', 'Body'),
         ];
     }
 

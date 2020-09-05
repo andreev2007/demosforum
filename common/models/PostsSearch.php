@@ -27,9 +27,16 @@ class PostsSearch extends Posts
     {
         return [
             [['id', 'created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'description', 'image'], 'safe'],
+            [['content', 'image'], 'safe'],
             [['search'], 'string'],
             [['period'], 'string'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+          'period' => \Yii::t('app', 'Period'),
         ];
     }
 
@@ -90,8 +97,7 @@ class PostsSearch extends Posts
 
 
         if ($this->search) {
-            $query->orFilterWhere(['like', 'name', $this->search])
-                ->orFilterWhere(['like', 'description', $this->search])->orderBy(['created_at' => SORT_DESC])->all();
+            $query->orFilterWhere(['like', 'content', $this->search])->orderBy(['created_at' => SORT_DESC])->all();
         }
 
 

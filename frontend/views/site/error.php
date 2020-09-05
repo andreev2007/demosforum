@@ -11,17 +11,15 @@ $this->title = $name;
 ?>
 <div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <div class="alert alert-danger">
         <?= nl2br(Html::encode($message)) ?>
     </div>
 
     <p>
-        The above error occurred while the Web server was processing your request.
+        Мы не нашли страницу которую вы искали
     </p>
     <p>
-        Please contact us if you think this is a server error. Thank you.
+        Возможно вы искали <a href="/">Главную страницу</a>?
     </p>
 
 </div>

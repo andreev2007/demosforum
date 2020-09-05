@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 <div class="container">
     <?php if (count($comments) > 0) { ?>
-        <h2 class="text-center" style="color: #5f5e5e">Комментарии</h2>
+        <h2 class="text-center" style="color: #5f5e5e"><?= Yii::t('app', 'Comments') ?></h2>
     <?php } ?>
     <?php if (!Yii::$app->user->isGuest) { ?>
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($comment, 'name')->textarea(['maxlength' => '450', 'rows' => '4']) ?>
 
         <div class="form-group">
-            <?= Html::submitButton(Html::tag('i', '', ['class' => 'fa fa-share mr-1']) . 'Комментировать', ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(Html::tag('i', '', ['class' => 'fa fa-share mr-1']) . Yii::t('app', 'Comment'), ['class' => 'btn btn-success']) ?>
         </div>
         <?php ActiveForm::end(); ?>
     <?php } ?>
@@ -56,7 +56,7 @@ use yii\widgets\ActiveForm;
                                 </button>
                                 <button class="float-right btn btn-outline-primary ml-2 reply-btn">
                                     <i class="fa fa-reply"></i>
-                                    Ответить
+                                    <?= Yii::t('app', 'Reply') ?>
                                 </button>
                             </p>
                             <style>
@@ -72,7 +72,7 @@ use yii\widgets\ActiveForm;
                             <?= $form->field($comment, 'parent_id')->hiddenInput(['value' => $review->id])->label(false); ?>
 
                             <div class="form-group">
-                                <?= Html::submitButton(Html::tag('i', '', ['class' => 'fa fa-share mr-1']) . 'Комментировать', ['class' => 'btn btn-success']) ?>
+                                <?= Html::submitButton(Html::tag('i', '', ['class' => 'fa fa-share mr-1']) . Yii::t('app', 'Reply'), ['class' => 'btn btn-success']) ?>
                             </div>
 
                             <?php ActiveForm::end(); ?>
@@ -113,6 +113,6 @@ use yii\widgets\ActiveForm;
             </div>
         <?php }
     } else { ?>
-        <h4 class="no-comment">Нет комментариев</h4>
+        <h4 class="no-comment"><?= Yii::t('app', 'No comments') ?></h4>
     <?php } ?>
 </div>

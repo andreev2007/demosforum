@@ -11,9 +11,10 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
-    'controllerNamespace' => 'frontend\controllers',
+    'controllerNamespace' => 'api\controllers',
     'components' => [
         'request' => [
+            'baseUrl' => '/api',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser'
             ]
@@ -45,6 +46,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'posts'],
             ],
         ],
     ],
