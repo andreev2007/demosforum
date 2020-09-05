@@ -20,9 +20,6 @@ return [
             'cookieName' => 'language',
             'expireDays' => 64,
         ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],
