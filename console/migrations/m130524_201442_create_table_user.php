@@ -16,6 +16,8 @@ class m130524_201442_create_table_user extends Migration
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique()->comment('Логин'),
             'avatar' => $this->string()->notNull()->unique()->comment('Аватарка'),
+            'first_name' => $this->string()->comment('Имя'),
+            'last_name' => $this->string()->comment('Фамилия'),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),

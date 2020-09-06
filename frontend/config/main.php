@@ -24,13 +24,13 @@ return [
                     'class' => \yii\authclient\clients\Facebook::class,
                     'clientId' => '373477420314060', //changed for issue purpose
                     'clientSecret' => '61fb950c949c09ede4194ceb6d5a398c', //changed for issue purpose
-                    'returnUrl' => 'http://demosforum.com',
+                  //  'returnUrl' => 'http://demosforum.com',
                 ],
-                'vk' => [
+                'vkontakte' => [
                     'class' => \yii\authclient\clients\VKontakte::class,
                     'clientId' => '7586779', //changed for issue purpose
                     'clientSecret' => 'q4a2SGbggetsL2VHnBuA', //changed for issue purpose
-                    'returnUrl' => 'http://demosforum.com',
+                   // 'returnUrl' => 'http://demosforum.com',
                 ],
             ],
         ],
@@ -65,6 +65,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'site/auth/<authclient:.+>' => 'site/auth',
             ],
         ],
     ],
