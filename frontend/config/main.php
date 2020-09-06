@@ -31,6 +31,7 @@ return [
                     'clientId' => '7586779', //changed for issue purpose
                     'clientSecret' => 'q4a2SGbggetsL2VHnBuA', //changed for issue purpose
                    // 'returnUrl' => 'http://demosforum.com',
+                    'scope' => ['email'],
                 ],
             ],
         ],
