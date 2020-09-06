@@ -22,7 +22,7 @@ class m130524_201442_create_table_user extends Migration
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
-            'email' => $this->string()->null()->unique()->comment('Электронная почта'),
+            'email' => $this->string()->comment('Электронная почта'),
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
