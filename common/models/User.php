@@ -31,6 +31,8 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property string $password write-only password
  * @property Posts|[] posts
  * @property mixed|null posts
+ * @property mixed|null first_name
+ * @property mixed|null last_name
  * @method getImageFileUrl(string $string)
  * @method getThumbFileUrl(string $string, string $string1)
  */

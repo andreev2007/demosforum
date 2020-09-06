@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $user common\models\User */
 
-$this->title = $user->username;
+$this->title = $user->first_name . ' ' . $user->last_name ;
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
@@ -27,12 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php if ($user->avatar) { ?>
                             <img class="profile-image" src="<?= $user->avatar ?>" alt="">
                         <?php } else { ?>
-                            <div class="avatar">
-                                <i class="fas fa-user-alt"></i>
-                            </div>
+                            <img class="profile-image" src="https://vk.com/images/camera_50.png?ava=1"/>
                         <?php } ?>
 
-                        <h5 class="card-title profile-name"><?= Html::encode($user->username) ?></h5>
+                        <h5 class="card-title profile-name"><?= Html::encode($user->first_name . ' ' . $user->last_name) ?></h5>
                     </div>
                     <div class="subscription-block">
                         <span class="card-text"><?= Yii::t('app', 'Subscribers') ?>: <span
@@ -49,14 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php if (!Yii::$app->user->isGuest) { ?>
                             <?php if ($user->id !== Yii::$app->user->id) { ?>
                                 <div>
-                                    <?php if (User::isSubscribed($user->id) === $user->id) { ?>
+                                    <?php if (User::isSubscribed($user->id) !== $user->id) { ?>
                                         <button class="btn btn-outline-danger subscribe"
                                                 data-user_id="<?= $user->id; ?>"
                                                 data-subscribers_count='<?= $user->getSubscribersCount() ?>'
                                         >
                                             Подписаться
                                         </button>
-                                    <?php } elseif (User::isSubscribed($user->id) !== $user->id) { ?>
+                                    <?php } elseif (User::isSubscribed($user->id) === $user->id) { ?>
                                         <button class="btn btn-secondary subscribed"
                                                 data-user_id="<?= $user->id; ?>"
                                                 data-subscribers_count='<?= $user->getSubscribersCount() ?>'

@@ -25,7 +25,7 @@ $this->title = Yii::t('app','Liked')
                                 <?php } else { ?>
                                     <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $post->user->id])) ?>">
 
-                                        <?= $post->user->username ?>
+                                        <?= $post->user->first_name . ' ' . $post->user->last_name  ?>
                                     </a>
                                 <?php } ?>
                             </h3>
@@ -48,9 +48,9 @@ $this->title = Yii::t('app','Liked')
                                 <i class="icon-star <?= User::isStarred($post->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
-                            <button type="button" class="[ btn btn-default ]">
+                            <a href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $post->id])) ?>" type="button" class="[ btn btn-default ]">
                                 <i class="far fa-share-square"></i>
-                            </button>
+                            </a>
                             <a class="[ btn btn-default ]" style="float: right" href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $post->getComments()->count() ?>
                             </a>

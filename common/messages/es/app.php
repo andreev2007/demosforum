@@ -64,6 +64,11 @@ return [
     'Resend verification email' => 'Reenviar correo electrónico de verificación',
     'Please fill out your email. A verification email will be sent there.' => 'Por favor complete su correo electrónico. Allí se enviará un correo electrónico de verificación.',
     'What are you searching?' => '¿Qué estás buscando?',
+    'First Name' => 'Nombre de pila',
+    'Last Name' => 'Apellido',
+    'We did not find the page you are searching for' => 'No encontramos la página que busca',
+    'Perhaps you are searching' => 'Quizás estas buscando',
+    'main page' => 'pagina principal',
     'Please fill the fields below to signup' => 'Por favor complete los campos a continuación para registrarse',
     'Please fill the fields below to login' => 'Por favor complete los campos a continuación para iniciar sesión',
 ];

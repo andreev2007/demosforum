@@ -14,7 +14,7 @@ class RbacController extends Controller
         //  Yii::$app->db->createCommand()->truncateTable('users')->execute();
         $user = User::findOne(['email' => 'admin@gmail.com']) ?: new User();
         $user->email = 'admin@gmail.com';
-        $user->username = 'admin';
+        $user->first_name . ' ' . $user->last_name  = 'admin';
         $user->status = 10;
         $user->setPassword('Kavabunga243');
         $user->generateAuthKey();

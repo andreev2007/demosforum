@@ -14,7 +14,7 @@ class m130524_201442_create_table_user extends Migration
 
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
-            'username' => $this->string()->notNull()->unique()->comment('Логин'),
+            'username' => $this->string()->null()->comment('Логин'),
             'avatar' => $this->string()->notNull()->unique()->comment('Аватарка'),
             'first_name' => $this->string()->comment('Имя'),
             'last_name' => $this->string()->comment('Фамилия'),

@@ -11,15 +11,11 @@ $this->title = $name;
 ?>
 <div class="site-error">
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
-
     <p>
-        Мы не нашли страницу которую вы искали
+        <?= Yii::t('app', 'We did not find the page you are searching for') ?>
     </p>
     <p>
-        Возможно вы искали <a href="/">Главную страницу</a>?
+        <?= Yii::t('app', 'Perhaps you are searching') ?> <a href="/"><?= Yii::t('app','main page') ?></a>?
     </p>
 
 </div>

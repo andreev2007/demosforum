@@ -13,12 +13,16 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $first_name;
+    public $last_name;
 
     public function attributeLabels()
     {
         return [
             'username' => Yii::t('app', 'Username'),
             'password' => Yii::t('app', 'Password'),
+            'first_name' => Yii::t('app', 'First Name'),
+            'last_name' => Yii::t('app', 'Last Name'),
         ];
     }
     /**
@@ -33,7 +37,7 @@ class SignupForm extends Model
             ['username', 'string', 'min' => 4, 'max' => 255],
 
             ['email', 'trim'],
-            ['email', 'required'],
+            [['email','first_name', 'last_name'], 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
@@ -57,6 +61,8 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->first_name = $this->first_name;
+        $user->last_name = $this->last_name;
         $user->status = User::STATUS_INACTIVE;
         $user->setPassword($this->password);
         $user->generateAuthKey();

@@ -20,13 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <h4>
-                            <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/posts/view', 'id' => $model->id])) ?>"><?= $model->name ?></a>
-                        </h4>
+                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
+                            <?= strip_tags(strip_tags($model->content)) ?>
+                        </p>
                         <h3>
-                            Автор:
+                            <?= Yii::t('app', 'Author') ?>:
                             <?php if ($model->user->id === Yii::$app->user->id) { ?>
-                                Вы
+                                <?= Yii::t('app','You') ?>
                             <?php } else { ?>
                                 <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $model->user->id])) ?>">
 
@@ -34,28 +34,54 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </a>
                             <?php } ?>
                         </h3>
-                        <h5><span>Дата</span> - <span><?= $model->getDate() ?></span></h5>
+                        <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $model->getDate() ?></span></h5>
                     </div>
-                    <div class="panel-body">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
-                            <?= $model->description ?>
-                        </p>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="button"
-                                data-post_id='<?= $model->id; ?>'
-                                data-likes_count='<?= $model->getLikesCount(); ?>'
-                                class="[ btn btn-default ] <?= User::isLiked($model->id) ? 'liked' : 'like' ?>">
-                            <i class="icon-heart <?= User::isLiked($model->id) ? 'fas' : 'far' ?> fa-heart"
-                               style="margin-right: 2px;"></i>
-                            <span class="likes-count">
+                    <?php if (!Yii::$app->user->isGuest) { ?>
+                        <div class="panel-footer">
+                            <button type="button"
+                                    data-post_id='<?= $model->id; ?>'
+                                    data-likes_count='<?= $model->getLikesCount(); ?>'
+                                    class="[ btn btn-default ] <?= User::isLiked($model->id) ? 'liked' : 'like' ?>">
+                                <i class="icon-heart <?= User::isLiked($model->id) ? 'fas' : 'far' ?> fa-heart"
+                                   style="margin-right: 2px;"></i>
+                                <span class="likes-count">
                                          <?= $model->getLikesCount() ?>
-                            </span>
-                        </button>
-                        <a class="[ btn btn-default ]" style="float: right">
-                            <i class="far fa-comment"></i> <?= $model->getComments()->count() ?>
-                        </a>
-                    </div>
+                                </span>
+                            </button>
+                            <a class="[ btn btn-default ]"
+                               href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $model->id])) ?>">
+                                <i class="far fa-share-square"></i>
+                            </a>
+                            <button type="button"
+                                    data-post_id='<?= $model->id; ?>'
+                                    class="[ btn btn-default ] <?= User::isStarred($model->id) ? 'starred' : 'star' ?>">
+                                <i class="icon-star <?= User::isStarred($model->id) ? 'fas' : 'far' ?> fa-star"
+                                   style="margin-right: 2px;"></i>
+                            </button>
+                            <a class="[ btn btn-default ]" style="float: right"
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
+                                <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>
+                            </a>
+                        </div>
+                    <?php } else { ?>
+                        <div class="panel-footer">
+                            <div class="[ btn btn-default ]">
+                                <i class="icon-heart far fa-heart"
+                                   style="margin-right: 2px;"></i>
+                                <span class="likes-count">
+                                            <?= $model->getLikesCount() ?>
+                                        </span>
+                            </div>
+                            <div class="[ btn btn-default ]">
+                                <i class="icon-star far fa-star"
+                                   style="margin-right: 2px;"></i>
+                            </div>
+                            <a class="[ btn btn-default ]" style="float: right"
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
+                                <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>
+                            </a>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 

@@ -85,7 +85,7 @@ $this->title = Yii::t('app', 'Home');
                                     <?php } else { ?>
                                         <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $question->user->id])) ?>">
 
-                                            <?= $question->user->username ?>
+                                            <?= $question->user->first_name . ' ' . $question->user->last_name ?>
                                         </a>
                                     <?php } ?>
                                 </h3>

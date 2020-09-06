@@ -80,7 +80,7 @@ class PostsController extends Controller
         } else {
             $this->findModel($id)->delete();
         }
-        return $this->redirect(['index']);
+        return $this->redirect(['/site/index']);
     }
 
     public function actionView($id)
