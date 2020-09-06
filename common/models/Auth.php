@@ -11,6 +11,7 @@ use Yii;
  * @property int $user_id
  * @property string $source
  * @property string $source_id
+ * @property mixed|null user
  */
 class Auth extends \yii\db\ActiveRecord
 {
@@ -45,5 +46,9 @@ class Auth extends \yii\db\ActiveRecord
             'source' => 'Source',
             'source_id' => 'Source ID',
         ];
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }
