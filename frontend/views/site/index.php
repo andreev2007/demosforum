@@ -74,14 +74,14 @@ $this->title = Yii::t('app', 'Home');
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <div class="[ panel panel-default ] panel-google-plus">
                             <div class="panel-heading">
-                                <a style="font-size: 110%; color: #504e4e; font-weight: 500"
+                                <a style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%"
                                    href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
                                     <?= mb_strimwidth($question->content, 0, 200, "..."); ?>
                                 </a>
                                 <h3>
                                     <?= Yii::t('app', 'Author') ?>:
                                     <?php if ($question->user->id === Yii::$app->user->id) { ?>
-                                        <?= Yii::t('app','You') ?>
+                                        <?= Yii::t('app', 'You') ?>
                                     <?php } else { ?>
                                         <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $question->user->id])) ?>">
 
@@ -89,7 +89,8 @@ $this->title = Yii::t('app', 'Home');
                                         </a>
                                     <?php } ?>
                                 </h3>
-                                <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $question->getDate() ?></span></h5>
+                                <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $question->getDate() ?></span>
+                                </h5>
                             </div>
                             <?php if (!Yii::$app->user->isGuest) { ?>
                                 <div class="panel-footer">

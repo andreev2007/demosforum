@@ -62,6 +62,8 @@ return [
     'Hello' => 'Здравствуйте',
     'First Name' => 'Имя',
     'Last Name' => 'Фамилия',
+    'Update Profile' => 'Обновить профиль',
+    'This email address has already been taken.' => 'Этот email уже был взят',
     'Follow the link below to verify your email' => 'Проследуйте по этой ссылке, чтобы подтвердить ваш email',
     'We did not find the page you are searching for' => 'Мы не нашли страницу которую вы искали',
     'Perhaps you are searching' => 'Возможно вы искали',

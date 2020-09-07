@@ -13,8 +13,7 @@ class RbacController extends Controller
 
         //  Yii::$app->db->createCommand()->truncateTable('users')->execute();
         $user = User::findOne(['email' => 'admin@gmail.com']) ?: new User();
-        $user->email = 'admin@gmail.com';
-        $user->username = 'admin';
+        $user->email = 'v5302527@gmail.com';
         $user->status = 10;
         $user->setPassword('Kavabunga243');
         $user->generateAuthKey();
@@ -32,7 +31,7 @@ class RbacController extends Controller
 
         $auth->addChild($superadmin, $admin);
 
-        if ($user = User::findByEmail('admin@gmail.com')) {
+        if ($user = User::findByEmail('v5302527@gmail.com')) {
             $auth->assign($admin, $user->id);
         }
 

@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach ($user->posts as $question): ?>
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <a style="font-size: 110%; color: #504e4e; font-weight: 500"
+                        <a style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%"
                            href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
                             <?= mb_strimwidth($question->content, 0, 200, "..."); ?>
                         </a>

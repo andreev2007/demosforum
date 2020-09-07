@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
+                        <p style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%">
                             <?= strip_tags(strip_tags($model->content)) ?>
                         </p>
                         <h3>

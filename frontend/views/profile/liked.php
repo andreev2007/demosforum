@@ -14,10 +14,10 @@ $this->title = Yii::t('app','Liked')
                 <div class="[ col-xs-12 col-sm-12 ]">
                     <div class="[ panel panel-default ] panel-google-plus">
                         <div class="panel-heading">
-                            <a style="font-size: 110%; color: #504e4e; font-weight: 500"
-                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
-                                <?= mb_strimwidth($post->content, 0, 200, "..."); ?>
-                            </a>
+                            <a style="font-size: 110%; color: #504e4e; font-weight: 500;width:90%"
+                           href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
+                            <?= mb_strimwidth($post->content, 0, 200, "..."); ?>
+                        </a>
                             <h3>
                                 <?= Yii::t('app', 'Author') ?>:
                                 <?php if ($post->user->id === Yii::$app->user->id) { ?>

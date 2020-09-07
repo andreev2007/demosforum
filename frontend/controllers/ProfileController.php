@@ -63,13 +63,14 @@ class ProfileController extends Controller
 
     public function actionUpdate()
     {
-        $user = User::findOne(Yii::$app->user->id);
+        $model = User::findOne(Yii::$app->user->id);
 
-        if ($user->load(Yii::$app->request->post()) && $user->save()) {
-            return $this->redirect(['view', 'id' => $user->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
+        Yii::error($model->errors);
         return $this->render('update', [
-            'model' => $user
+            'model' => $model
         ]);
     }
 

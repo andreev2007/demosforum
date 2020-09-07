@@ -61,9 +61,9 @@ class User extends ActiveRecord implements IdentityInterface
                     'thumb' => ['width' => 1000, 'height' => 1000],
                 ],
                 'filePath' => '@frontend/web/avatars/' . $this->getImagePath() . '.[[extension]]',
-                'fileUrl' => '/avatars/'. $this->getImagePath() . '.[[extension]]',
+                'fileUrl' => '/avatars/' . $this->getImagePath() . '.[[extension]]',
                 'thumbPath' => '@frontend/web/avatars/thumb/' . $this->getImagePath() . '.[[extension]]',
-                'thumbUrl' => '/avatars/thumb/'. $this->getImagePath() .'.[[extension]]',
+                'thumbUrl' => '/avatars/thumb/' . $this->getImagePath() . '.[[extension]]',
             ],
             [
                 'class' => AttributeBehavior::class,
@@ -84,6 +84,15 @@ class User extends ActiveRecord implements IdentityInterface
             ]
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [
+          'first_name' => Yii::t('app','First Name'),
+          'last_name' => Yii::t('app','Last Name'),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -120,7 +129,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
-            [['email'], 'safe']
+            [['email', 'first_name', 'last_name'], 'safe'],
         ];
     }
 
@@ -347,7 +356,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function afterSave($insert, $changedAttributes)
     {
-        Yii::error("HKHKHJH");
         if ($this->status == 9) {
             Posts::updateAll(['status' => 9], ['created_by' => $this->id]);
         }
