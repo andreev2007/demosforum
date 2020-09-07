@@ -10,7 +10,6 @@ use common\models\User;
  */
 class SignupForm extends Model
 {
-    public $username;
     public $email;
     public $password;
     public $first_name;
@@ -19,7 +18,6 @@ class SignupForm extends Model
     public function attributeLabels()
     {
         return [
-            'username' => Yii::t('app', 'Username'),
             'password' => Yii::t('app', 'Password'),
             'first_name' => Yii::t('app', 'First Name'),
             'last_name' => Yii::t('app', 'Last Name'),
@@ -54,7 +52,6 @@ class SignupForm extends Model
         }
 
         $user = new User();
-        $user->username = $this->username;
         $user->email = $this->email;
         $user->first_name = $this->first_name;
         $user->last_name = $this->last_name;
