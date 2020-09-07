@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card-body">
                     <div class="block-header">
                         <?php if ($user->avatar) { ?>
-                            <img class="profile-image" src="<?= $user->avatar ?>" alt="">
+                            <img class="profile-image" src="<?= $user->avatar ?>" alt="" />
                         <?php } else { ?>
                             <img class="profile-image" src="https://vk.com/images/camera_50.png?ava=1"/>
                         <?php } ?>
