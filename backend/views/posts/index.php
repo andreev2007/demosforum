@@ -1,7 +1,6 @@
 <?php
 
-use nickdenry\grid\FilterContentActionColumn;
-use yii\helpers\Html;
+use backend\components\FilterContent;
 use yii\grid\GridView;
 use common\models\User;
 
@@ -35,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_at',
 
             [
-                'class' => FilterContentActionColumn::className(),
+                'class' => FilterContent::className(),
                 // Add your own filterContent
                 'filterContent' => function () {
                     return '<div class="btn-group"> ' .

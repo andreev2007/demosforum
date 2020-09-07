@@ -2,7 +2,7 @@
 
 use dosamigos\switchinput\SwitchBox;
 use dosamigos\switchinput\SwitchRadio;
-use nickdenry\grid\FilterContentActionColumn;
+use backend\components\FilterContent;
 use yii\grid\GridView;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //'verification_token',
 
                 [
-                    'class' => FilterContentActionColumn::className(),
+                    'class' => FilterContent::className(),
                     // Add your own filterContent
                     'filterContent' => function()
                     {

@@ -29,7 +29,7 @@ $this->title = Yii::t('app', 'Home');
 
                         <div class="row mt-3">
                             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                                <?= $form->field($post, 'content')->widget(\yii\redactor\widgets\Redactor::className(),
+                                <?= $form->field($post, 'content')->widget(\common\widgets\RedactorCode::className(),
                                     [
                                         'clientOptions' => [
                                             'placeholder' => Yii::t('app', 'Edit your content here...')
