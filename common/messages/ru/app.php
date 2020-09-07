@@ -61,6 +61,7 @@ return [
     'Registration' => 'Регистрация',
     'Your email has been confirmed!' => 'Ваш email был подтвержден!',
     'Hello' => 'Здравствуйте',
+    'Sorry, we are unable to verify your account with provided token.' => 'Извините мы не можем проверить вашу почту по предоставленному токену.',
     'First Name' => 'Имя',
     'Thank you for registration. Please check your inbox for verification email.' => 'Спасибо за регистрацию. Пожалуйста 
     проверте ваши входящие сообщения для подтверждения почты.',

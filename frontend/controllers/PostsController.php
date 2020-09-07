@@ -99,12 +99,6 @@ class PostsController extends Controller
             Yii::error($comment->errors);
         }
 
-        if ($post->status == 10) {
-            $post;
-        } else {
-            return $this->redirect(['/site/index']);
-        }
-
         return $this->render('view', [
             'model' => $post,
             'comment' => $comment,

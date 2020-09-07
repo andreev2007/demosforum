@@ -56,6 +56,7 @@ return [
     'Reply' => 'Respuesta',
     'Number of records' => 'Numero de registros',
     'Description' => 'Descripción',
+    'Sorry, we are unable to verify your account with provided token.' => 'Lo sentimos, no podemos verificar su cuenta con el token proporcionado.',
     'Your email has been confirmed!' => '¡Tu correo ha sido confirmado!',
     'Image' => 'Imagen',
     'If you have any questions please contact' => 'Si tiene alguna pregunta, comuníquese con',
