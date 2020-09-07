@@ -96,7 +96,6 @@ class AuthHandler
                     $user = new User([
                         'email' => $email,
                         'password' => $password,
-                        'username' => Yii::$app->security->generateRandomString(10),
                         'avatar' => $image ?: '',
                         'network' => $this->client->getId() ?: '',
                         'last_name' => $surname ?: '',
