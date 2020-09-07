@@ -186,7 +186,7 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
+            Yii::$app->session->setFlash('success', Yii::t('app','Thank you for registration. Please check your inbox for verification email.'));
             return $this->goHome();
         }
 
@@ -260,7 +260,7 @@ class SiteController extends Controller
         }
         if ($user = $model->verifyEmail()) {
             if (Yii::$app->user->login($user)) {
-                Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
+                Yii::$app->session->setFlash('success', Yii::t('app','Your email has been confirmed!'));
                 return $this->goHome();
             }
         }

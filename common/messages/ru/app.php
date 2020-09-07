@@ -59,8 +59,11 @@ return [
     'Image' => 'Картинка',
     'If you have any questions please contact' => 'Если у вас есть какие-то вопросы пожалуйста обращайтесь',
     'Registration' => 'Регистрация',
+    'Your email has been confirmed!' => 'Ваш email был подтвержден!',
     'Hello' => 'Здравствуйте',
     'First Name' => 'Имя',
+    'Thank you for registration. Please check your inbox for verification email.' => 'Спасибо за регистрацию. Пожалуйста 
+    проверте ваши входящие сообщения для подтверждения почты.',
     'Last Name' => 'Фамилия',
     'Update Profile' => 'Обновить профиль',
     'This email address has already been taken.' => 'Этот email уже был взят',

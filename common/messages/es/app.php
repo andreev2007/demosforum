@@ -56,6 +56,7 @@ return [
     'Reply' => 'Respuesta',
     'Number of records' => 'Numero de registros',
     'Description' => 'Descripción',
+    'Your email has been confirmed!' => '¡Tu correo ha sido confirmado!',
     'Image' => 'Imagen',
     'If you have any questions please contact' => 'Si tiene alguna pregunta, comuníquese con',
     'Registration' => 'Registro',
@@ -65,6 +66,8 @@ return [
     'Please fill out your email. A verification email will be sent there.' => 'Por favor complete su correo electrónico. Allí se enviará un correo electrónico de verificación.',
     'What are you searching?' => '¿Qué estás buscando?',
     'Update Profile' => 'Actualización Del Perfil',
+    'Thank you for registration. Please check your inbox for verification email.' => 'Gracias por registrarte.
+     Revise su bandeja de entrada para ver el correo electrónico de verificación.',
     'This email address has already been taken.' => 'Esta dirección de correo electrónico ya ha sido utilizada.',
     'Hello' => 'Hola',
     'Follow the link below to verify your email' => 'Siga el enlace a continuación para verificar su correo electrónico',
