@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= Yii::t('app','You') ?>
                             <?php } else { ?>
                                 <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $model->user->id])) ?>">
-                                    <?= $model->user->username ?>
+                                    <?= $model->user->first_name . ' ' . $model->user->last_name ?>
                                 </a>
                             <?php } ?>
                         </h3>
