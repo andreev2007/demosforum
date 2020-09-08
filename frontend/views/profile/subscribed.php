@@ -17,9 +17,11 @@ $this->title = Yii::t('app','Subscribed');
                             <div class="frontside">
                                 <div class="card">
                                     <div class="card-body text-center">
-                                        <p><img class=" img-fluid"
-                                                src="<?= $user->avatar ?>"
-                                                alt="Profile Image"></p>
+                                        <?php if ($user->avatar) { ?>
+                                           <p><img class="img-fluid" style="border-radius: 100%" src="<?= $user->avatar ?>" alt=""/></p>
+                                        <?php } else { ?>
+                                           <p><img class="img-fluid" style="border-radius: 100%" src="https://vk.com/images/camera_50.png?ava=1"/></p>
+                                        <?php } ?>
                                         <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $user->id])) ?>"
                                            class="card-title">
                                             <?= $user->first_name . ' ' . $user->last_name ?>
