@@ -13,16 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="m-class">
-    <div>
-        <h4 style="color: #212020"><?= Yii::t('app', 'Change language') ?></h4>
-        <?= \lajax\languagepicker\widgets\LanguagePicker::widget([
-            'itemTemplate' => '<li><a href="{link}" class="nav-link" title="{language}"><i id="{language}"></i> <span style="color: black">{name}</span></a></li>',
-            'activeItemTemplate' => '<a href="{link}"  class="btn btn-primary"  title="{language}"><i id="{language}" ></i> <span>{name}</span></a>',
-            'parentTemplate' => '<li class="language-picker dropdown-list {size} "><a>{activeItem}<ul>{items}</ul></a></li>',
-            'languageAsset' => 'lajax\languagepicker\bundles\LanguageLargeIconsAsset',      // StyleSheets
-            'languagePluginAsset' => 'lajax\languagepicker\bundles\LanguagePluginAsset',    // JavaScripts
-        ]); ?>
-    </div>
     <div class="mt-3">
         <h4 style="color: #212020"><?= Yii::t('app', 'Change password') ?></h4>
         <a href="<?= Html::encode(Url::toRoute(['/site/request-password-reset'])) ?>"

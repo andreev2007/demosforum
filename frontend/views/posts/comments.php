@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
                             <p>
                                 <a class="float-left"
                                    href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
-                                    <strong><?= $review->user->first_name . ' ' . $review->user->last_name  ?></strong>
+                                    <strong><?= $review->user->first_name . ' ' . $review->user->last_name ?></strong>
                                 </a>
                                 <span class="float-right" style="color: grey">
                                     <?= $review->getDate() ?>
@@ -42,23 +42,43 @@ use yii\widgets\ActiveForm;
                             </p>
                             <div class="clearfix"></div>
                             <p><?= $review->name ?></p>
-                            <p style="margin-bottom: .5rem;">
-
-                                <button type="button"
-                                        data-comment_id='<?= $review->id; ?>'
-                                        data-likes_count='<?= $review->getLikesCount(); ?>'
-                                        class="[ btn btn-default ] <?= User::isCommentLiked($review->id) ? 'liked-com' : 'like-com' ?>">
-                                    <i class="icon-heart <?= User::isCommentLiked($review->id) ? 'fas' : 'far' ?> fa-heart"
-                                       style="margin-right: 2px;"></i>
-                                    <span class="likes-com-count">
+                            <?php if (!Yii::$app->user->isGuest) { ?>
+                                <p style="margin-bottom: .5rem;">
+                                    <button type="button"
+                                            data-comment_id='<?= $review->id; ?>'
+                                            data-likes_count='<?= $review->getLikesCount(); ?>'
+                                            class="[ btn btn-default ] <?= User::isCommentLiked($review->id) ? 'liked-com' : 'like-com' ?>">
+                                        <i class="icon-heart <?= User::isCommentLiked($review->id) ? 'fas' : 'far' ?> fa-heart"
+                                           style="margin-right: 2px;"></i>
+                                        <span class="likes-com-count">
                                          <?= $review->getLikesCount() ?>
                                     </span>
-                                </button>
-                                <button class="float-right btn btn-outline-primary ml-2 reply-btn">
-                                    <i class="fa fa-reply"></i>
-                                    <?= Yii::t('app', 'Reply') ?>
-                                </button>
-                            </p>
+                                    </button>
+                                    <button class="float-right btn btn-outline-primary ml-2 reply-btn">
+                                        <i class="fa fa-reply"></i>
+                                        <?= Yii::t('app', 'Reply') ?>
+                                    </button>
+                                </p>
+                            <?php } else { ?>
+                                <p style="margin-bottom: .5rem;">
+                                    <a type="button"
+                                       data-comment_id='<?= $review->id; ?>'
+                                       data-likes_count='<?= $review->getLikesCount(); ?>'
+                                       class="[ btn btn-default ]">
+                                        <i class="icon-heart fa-heart"
+                                           style="margin-right: 2px;"></i>
+                                        <span class="likes-com-count">
+                                         <?= $review->getLikesCount() ?>
+                                    </span>
+                                    </a>
+                                    <a href="<?= Html::encode(Url::toRoute(['/site/login'])) ?>"
+                                       class="float-right btn btn-outline-primary ml-2 reply-btn">
+                                        <i class="fa fa-reply"></i>
+                                        <?= Yii::t('app', 'Reply') ?>
+                                    </a>
+                                </p>
+
+                            <?php } ?>
                             <style>
                                 .reply-block-hidden {
                                     display: none;
@@ -89,21 +109,34 @@ use yii\widgets\ActiveForm;
                                             <?= $review->getDate() ?>
                                         </span>
                                             <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $parent_comment->user->id])) ?>">
-                                                <strong><?= $parent_comment->user->first_name .' '. $parent_comment->user->last_name ?></strong></a></p>
+                                                <strong><?= $parent_comment->user->first_name . ' ' . $parent_comment->user->last_name ?></strong></a>
+                                        </p>
 
                                         </p>
                                         <p><?= $parent_comment->name ?></p>
-
-                                        <button type="button"
-                                                data-comment_id='<?= $parent_comment->id; ?>'
-                                                data-likes_count='<?= $parent_comment->getLikesCount(); ?>'
-                                                class="[ btn btn-default ] <?= User::isCommentLiked($parent_comment->id) ? 'liked-com' : 'like-com' ?>">
-                                            <i class="icon-heart <?= User::isCommentLiked($parent_comment->id) ? 'fas' : 'far' ?> fa-heart"
-                                               style="margin-right: 2px;"></i>
-                                            <span class="likes-com-count">
+                                        <?php if (!Yii::$app->user->isGuest) { ?>
+                                            <button type="button"
+                                                    data-comment_id='<?= $parent_comment->id; ?>'
+                                                    data-likes_count='<?= $parent_comment->getLikesCount(); ?>'
+                                                    class="[ btn btn-default ] <?= User::isCommentLiked($parent_comment->id) ? 'liked-com' : 'like-com' ?>">
+                                                <i class="icon-heart <?= User::isCommentLiked($parent_comment->id) ? 'fas' : 'far' ?> fa-heart"
+                                                   style="margin-right: 2px;"></i>
+                                                <span class="likes-com-count">
                                                 <?= $parent_comment->getLikesCount() ?>
                                             </span>
-                                        </button>
+                                            </button>
+                                        <?php } else { ?>
+                                            <a data-comment_id='<?= $parent_comment->id; ?>'
+                                               href="<?php Html::encode(Url::toRoute('/site/login')) ?>"
+                                               data-likes_count='<?= $parent_comment->getLikesCount(); ?>'
+                                               class="[ btn btn-default ]">
+                                                <i class="icon-heart fa-heart"
+                                                   style="margin-right: 2px;"></i>
+                                                <span class="likes-com-count">
+                                                <?= $parent_comment->getLikesCount() ?>
+                                            </span>
+                                            </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

@@ -7,8 +7,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Posts */
 
-$this->title = strip_tags(strip_tags($model->content));
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '...');
 \yii\web\YiiAsset::register($this);
 
 ?>
@@ -19,13 +18,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%">
-                            <?= strip_tags(strip_tags($model->content)) ?>
+                        <p style="font-size: 110%; color: #504e4e; font-weight: 500;width: 90%;word-break: break-word;">
+                            <?= strip_tags($model->content) ?>
                         </p>
                         <h3>
                             <?= Yii::t('app', 'Author') ?>:
                             <?php if ($model->user->id === Yii::$app->user->id) { ?>
-                                <?= Yii::t('app','You') ?>
+                                <?= Yii::t('app', 'You') ?>
                             <?php } else { ?>
                                 <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $model->user->id])) ?>">
                                     <?= $model->user->first_name . ' ' . $model->user->last_name ?>
@@ -63,19 +62,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     <?php } else { ?>
                         <div class="panel-footer">
-                            <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>" class="[ btn btn-default ]">
+                            <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>"
+                               class="[ btn btn-default ]">
                                 <i class="icon-heart far fa-heart"
                                    style="margin-right: 2px;"></i>
                                 <span class="likes-count">
                                             <?= $model->getLikesCount() ?>
                                         </span>
                             </a>
-                            <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>"  class="[ btn btn-default ]">
+                            <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>"
+                               class="[ btn btn-default ]">
                                 <i class="icon-star far fa-star"
                                    style="margin-right: 2px;"></i>
                             </a>
                             <a class="[ btn btn-default ]" style="float: right"
-                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>" >
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>
                             </a>
                         </div>

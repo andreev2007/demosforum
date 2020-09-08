@@ -75,7 +75,7 @@ $this->title = Yii::t('app', 'Home');
                     <div class="[ col-xs-12 col-sm-12 ]">
                         <div class="[ panel panel-default ] panel-google-plus">
                             <div class="panel-heading">
-                                <a style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%"
+                                <a style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%;word-break: break-word;"
                                    href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
                                     <?= mb_strimwidth($question->content, 0, 200, "..."); ?>
                                 </a>
@@ -105,16 +105,16 @@ $this->title = Yii::t('app', 'Home');
                                          <?= $question->getLikesCount() ?>
                                     </span>
                                     </button>
-                                    <a class="[ btn btn-default ]"
-                                       href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $question->id])) ?>">
-                                        <i class="far fa-share-square"></i>
-                                    </a>
                                     <button type="button"
                                             data-post_id='<?= $question->id; ?>'
                                             class="[ btn btn-default ] <?= User::isStarred($question->id) ? 'starred' : 'star' ?>">
                                         <i class="icon-star <?= User::isStarred($question->id) ? 'fas' : 'far' ?> fa-star"
                                            style="margin-right: 2px;"></i>
                                     </button>
+                                    <a class="[ btn btn-default ]"
+                                       href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $question->id])) ?>">
+                                        <i class="far fa-share-square"></i>
+                                    </a>
                                     <a class="[ btn btn-default ]" style="float: right"
                                        href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
                                         <i class="far fa-comment-alt"></i> <?= $question->getComments()->count() ?>
