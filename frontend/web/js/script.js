@@ -116,10 +116,6 @@ $(document).on("click",'.subscribe',function() {
             subscribe.removeClass('subscribe')
             subscribe.addClass('subscribed')
             subscribersCount++;
-            if (data.subscribersCount) {
-                subscribe.find('.subscribers-count').text(data.subscribersCount);
-            }
-
         },
         error: function (errormessage) {
 
@@ -145,10 +141,7 @@ $(document).on("click",'.subscribed',function() {
             subscribe.addClass('btn-outline-danger');
             subscribe.text('Подписаться');
             subscribe.removeClass('subscribed')
-            subscribe.addClass('subscribe')
-            if (data.subscruberdCount) {
-                subscribe.find('.subscribers-count').text(data.subscruberCount);
-            }
+            subscribe.addClass('subscribe');
         },
         error: function (errormessage) {
 
