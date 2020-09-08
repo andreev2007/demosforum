@@ -89,7 +89,7 @@ use yii\widgets\ActiveForm;
                                             <?= $review->getDate() ?>
                                         </span>
                                             <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
-                                                <strong><?= $parent_comment->user->username ?></strong></a></p>
+                                                <strong><?= $parent_comment->user->first_name .' '. $parent_comment->user->last_name ?></strong></a></p>
 
                                         </p>
                                         <p><?= $parent_comment->name ?></p>
