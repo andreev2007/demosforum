@@ -75,7 +75,7 @@ AppAsset::register($this);
 
                 <a class="dropdown-item" href="<?= Html::encode(Url::to('/site/contact')) ?>">
                     <button class="btn" style="outline: none">
-                        <?= Yii::t('app', 'Contact') . '<i class="fas fa-headset" style="margin-left: 2px;font-size: 16px;color: grey;"></i>' ?>
+                        <?= Yii::t('app', 'Tech Support') . '<i class="fas fa-headset" style="margin-left: 2px;font-size: 16px;color: grey;"></i>' ?>
                     </button>
                 </a>
 
