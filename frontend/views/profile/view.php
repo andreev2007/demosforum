@@ -55,7 +55,7 @@ $this->title = $user->first_name
                         <?php if (!Yii::$app->user->isGuest) { ?>
                             <?php if ($user->id !== Yii::$app->user->id) { ?>
                                 <div>
-                                    <?php if (User::isSubscribed($user->id) !== $user->id) { ?>
+                                    <?php if (User::isSubscribed($user->id)) { ?>
                                         <button class="btn btn-outline-danger subscribe"
                                                 data-user_id="<?= $user->id; ?>"
                                                 data-subscribers_count='<?= $user->getSubscribersCount() ?>'
