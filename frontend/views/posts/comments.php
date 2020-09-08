@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
                             <p>
                                 <a class="float-left"
                                    href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
-                                    <strong><?= $review->user->first_name . $review->user->last_name  ?></strong>
+                                    <strong><?= $review->user->first_name . ' ' . $review->user->last_name  ?></strong>
                                 </a>
                                 <span class="float-right" style="color: grey">
                                     <?= $review->getDate() ?>
@@ -88,7 +88,7 @@ use yii\widgets\ActiveForm;
                                             <span class="float-right" style="color: grey">
                                             <?= $review->getDate() ?>
                                         </span>
-                                            <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
+                                            <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $parent_comment->user->id])) ?>">
                                                 <strong><?= $parent_comment->user->first_name .' '. $parent_comment->user->last_name ?></strong></a></p>
 
                                         </p>
