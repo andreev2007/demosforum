@@ -34,7 +34,7 @@ use yii\widgets\ActiveForm;
                             <p>
                                 <a class="float-left"
                                    href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
-                                    <strong><?= $review->user->username ?></strong>
+                                    <strong><?= $review->user->first_name . $review->user->last_name  ?></strong>
                                 </a>
                                 <span class="float-right" style="color: grey">
                                     <?= $review->getDate() ?>
