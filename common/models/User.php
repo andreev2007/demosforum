@@ -316,15 +316,20 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getSubscribers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->via('subscribersAttachment');
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->via('subscribersAssignment');
     }
 
-    public function getSubscribersAttachment()
+    public function getSubscribersAssignment()
     {
         return $this->hasMany(Subscriber::className(), ['subscriber_id' => 'id']);
     }
 
     public function getSubscribed()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->via('subscribedAssignment');
+    }
+
+     public function getSubscribedAssignment()
     {
         return $this->hasMany(Subscriber::className(), ['subscriber_id' => 'id']);
     }

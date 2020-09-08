@@ -61,6 +61,36 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function actionSubscribed()
+    {
+        $user = Yii::$app->user->identity;
+        $dataProvider = new ActiveDataProvider(
+            [
+                'query' => $user->getSubscribed()
+            ]
+        );
+
+        return $this->render('subscribed', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionSubscribers()
+    {
+        $user = Yii::$app->user->identity;
+        $dataProvider = new ActiveDataProvider(
+            [
+                'query' => $user->getSubscribers()
+            ]
+        );
+
+        return $this->render('subscribers', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionUpdate()
     {
         $model = User::findOne(Yii::$app->user->id);

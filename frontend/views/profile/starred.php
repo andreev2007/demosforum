@@ -4,7 +4,7 @@ use common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Сохраненные';
+$this->title = Yii::t('app','Starred');
 ?>
 
 <div class="container">

@@ -27,13 +27,6 @@ return [
                     'clientSecret' => '61fb950c949c09ede4194ceb6d5a398c', //changed for issue purpose
                   //  'returnUrl' => 'http://demosforum.com',
                 ],
-                'vkontakte' => [
-                    'class' => \yii\authclient\clients\VKontakte::class,
-                    'clientId' => '7586779', //changed for issue purpose
-                    'clientSecret' => 'q4a2SGbggetsL2VHnBuA', //changed for issue purpose
-                   // 'returnUrl' => 'http://demosforum.com',
-                    'scope' => ['email'],
-                ],
             ],
         ],
         'languagepicker' => [

@@ -3,6 +3,8 @@
 return [
     'Username' => 'Имя пользователя',
     'Login' => 'Войти',
+    'Log in' => 'Вход',
+    'or' => 'Или',
     'Home' => 'Главная',
     'If you forgot your password you can' => 'Если вы забыли пароль, то вы можете ',
     'Password' => 'Пароль',
@@ -39,6 +41,8 @@ return [
     'My profile' => 'Мой профиль',
     'Liked' => 'Понравившееся',
     'Starred' => 'Закладки',
+    'Log in with facebook' => 'Войти с facebook',
+    'Signup with facebook' => 'Зарегистрироваться с facebook',
     'Tech Support' => 'Техподдержка',
     'Name' => 'Название',
     'Subject' => 'Причина',

@@ -53,6 +53,16 @@ AppAsset::register($this);
                                 style="margin-left: 2px;font-size: 16px"></i>
                     </button>
                 </a>
+                <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribed'])) ?>">
+                    <button class="btn" style="outline: none">
+                        <?= Yii::t('app', 'Subscribed') ?>
+                    </button>
+                </a>
+                <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribers'])) ?>">
+                    <button class="btn" style="outline: none">
+                        <?= Yii::t('app', 'Subscribers') ?>
+                    </button>
+                </a>
                 <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/starred'])) ?>">
                     <button class="btn" style="outline: none"><?= Yii::t('app', 'Starred') ?> <i
                                 class="fas fa-star"

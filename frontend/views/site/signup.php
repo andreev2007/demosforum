@@ -9,18 +9,13 @@ use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = Yii::t('app', 'Signup Form');
+$this->title = Yii::t('app', 'Registration');
 ?>
 <div class="site-signup">
-    <h1><?= Yii::t('app', 'Registration') ?></h1>
+    <h1><?= $this->title ?></h1>
 
-    <p><?= \Yii::t('app', 'Please fill the fields below to signup'); ?>:</p>
-    <?= yii\authclient\widgets\AuthChoice::widget([
-        'baseAuthUrl' => ['site/auth'],
-        'popupMode' => false,
-    ]) ?>
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-7">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
             <?= $form->field($model, 'email') ?>
@@ -36,6 +31,15 @@ $this->title = Yii::t('app', 'Signup Form');
             </div>
 
             <?php ActiveForm::end(); ?>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
+             style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+            <div style="margin-bottom: 10px;"><?= Yii::t('app', 'Signup with facebook') ?>:</div>
+
+            <?= yii\authclient\widgets\AuthChoice::widget([
+                'baseAuthUrl' => ['site/auth'],
+                'popupMode' => false,
+            ]) ?>
         </div>
     </div>
 </div>
