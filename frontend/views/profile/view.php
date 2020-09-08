@@ -62,7 +62,7 @@ $this->title = $user->first_name
                                         >
                                             Подписаться
                                         </button>
-                                    <?php } elseif (User::isSubscribed($user->id) === $user->id) { ?>
+                                    <?php } else { ?>
                                         <button class="btn btn-secondary subscribed"
                                                 data-user_id="<?= $user->id; ?>"
                                                 data-subscribers_count='<?= $user->getSubscribersCount() ?>'
