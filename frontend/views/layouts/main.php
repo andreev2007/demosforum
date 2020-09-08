@@ -61,19 +61,20 @@ AppAsset::register($this);
                 </a>
                 <a class="dropdown-item" href="<?= Html::encode(Url::to('/notifications/index')) ?>">
                     <button class="btn" style="outline: none"
-                    "><?= Yii::t('app', 'Notifications') ?>
-                    <?php if ($count > 0) { ?>
-                        <?php if ($count < 100) { ?>
-                            <span class="badge badge-danger"><?= $count; ?></span>
-                        <?php } else { ?>
-                            <span class="badge badge-danger">100+</span>
+                    ><?= Yii::t('app', 'Notifications') ?>
+                        <i class="far fa-bell" style="margin-left: 2px;font-size: 16px;color: grey;"></i>
+                        <?php if ($count > 0) { ?>
+                            <?php if ($count < 100) { ?>
+                                <span class="badge badge-danger"><?= $count; ?></span>
+                            <?php } else { ?>
+                                <span class="badge badge-danger">100+</span>
+                            <?php } ?>
                         <?php } ?>
-                    <?php } ?>
                     </button>
                 </a>
 
                 <a class="dropdown-item" href="<?= Html::encode(Url::to('/site/contact')) ?>">
-                    <button class="btn" style="outline: none" >
+                    <button class="btn" style="outline: none">
                         <?= Yii::t('app', 'Contact') . '<i class="fas fa-headset" style="margin-left: 2px;font-size: 16px;color: grey;"></i>' ?>
                     </button>
                 </a>
