@@ -48,6 +48,7 @@ $this->title = Yii::t('app', 'Home');
                 <?php } ?>
 
                 <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
+                    <h5 class="mb-2"><?= Yii::t('app','Posts') ?></h5>
                     <?php $form = ActiveForm::begin([
                         'action' => '/',
                         'options' =>
@@ -63,7 +64,7 @@ $this->title = Yii::t('app', 'Home');
                         3600 * 720 => Yii::t('app', 'Month'),
                     ], [
                         'onchange' => 'document.getElementById("search-form").submit()',
-                    ]); ?>
+                    ])->label(false); ?>
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>
@@ -121,19 +122,18 @@ $this->title = Yii::t('app', 'Home');
                                 </div>
                             <?php } else { ?>
                                 <div class="panel-footer">
-                                    <div class="[ btn btn-default ]">
+                                    <a class="[ btn btn-default ]" href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
                                         <i class="icon-heart far fa-heart"
                                            style="margin-right: 2px;"></i>
                                         <span class="likes-count">
                                             <?= $question->getLikesCount() ?>
                                         </span>
-                                    </div>
-                                    <div class="[ btn btn-default ]">
+                                    </a>
+                                    <a href="<?= Html::encode(Url::toRoute(['site/login'])) ?>" class="[ btn btn-default ]">
                                         <i class="icon-star far fa-star"
                                            style="margin-right: 2px;"></i>
-                                    </div>
-                                    <a class="[ btn btn-default ]" style="float: right"
-                                       href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
+                                    </a>
+                                    <a class="[ btn btn-default ]" style="float: right" href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
                                         <i class="far fa-comment-alt"></i> <?= $question->getComments()->count() ?>
                                     </a>
                                 </div>

@@ -59,6 +59,8 @@ return [
     'Sorry, we are unable to verify your account with provided token.' => 'Lo sentimos, no podemos verificar su cuenta con el token proporcionado.',
     'Your email has been confirmed!' => '¡Tu correo ha sido confirmado!',
     'Image' => 'Imagen',
+    'Posts' => 'Publicaciones',
+    'Edit Profile' => 'Editar perfil',
     'If you have any questions please contact' => 'Si tiene alguna pregunta, comuníquese con',
     'Registration' => 'Registro',
     'Please fill out your email. A link to reset password will be sent there.' => 'Por favor complete su correo electrónico. Allí se enviará un enlace para restablecer la contraseña.',

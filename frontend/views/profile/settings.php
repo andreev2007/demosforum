@@ -33,8 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
         <?= $form->field($user, 'avatarUpload')->fileInput()->label(false) ?>
-        <?= Html::submitButton(Yii::t('app', 'Save'),['class' => 'btn btn-success mb-1']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success mb-1']) ?>
 
         <?php ActiveForm::end() ?>
+    </div>
+    <div class="mt-3">
+        <div>
+            <?= Html::a(Yii::t('app', 'Edit Profile'), ['update'], ['class' => 'btn btn-primary']) ?>
+        </div>
     </div>
 </div>

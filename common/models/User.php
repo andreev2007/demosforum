@@ -33,6 +33,9 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property mixed|null posts
  * @property mixed|null first_name
  * @property mixed|null last_name
+ * @property mixed|null phone
+ * @property mixed|null telegram
+ * @property mixed|null whatsapp
  * @method getImageFileUrl(string $string)
  * @method getThumbFileUrl(string $string, string $string1)
  */
@@ -129,7 +132,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
-            [['email', 'first_name', 'last_name'], 'safe'],
+            [['email', 'first_name', 'last_name','phone','telegram','whatsapp'], 'safe'],
         ];
     }
 

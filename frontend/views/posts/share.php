@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php if (Yii::$app->user->id === $model->user->id) { ?>
             <p>
-                <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [

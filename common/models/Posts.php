@@ -114,7 +114,7 @@ class Posts extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'period' => 'Период',
+            'period' => Yii::t('app','Posts'),
         ];
     }
 

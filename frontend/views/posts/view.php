@@ -63,19 +63,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     <?php } else { ?>
                         <div class="panel-footer">
-                            <div class="[ btn btn-default ]">
+                            <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>" class="[ btn btn-default ]">
                                 <i class="icon-heart far fa-heart"
                                    style="margin-right: 2px;"></i>
                                 <span class="likes-count">
                                             <?= $model->getLikesCount() ?>
                                         </span>
-                            </div>
-                            <div class="[ btn btn-default ]">
+                            </a>
+                            <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>"  class="[ btn btn-default ]">
                                 <i class="icon-star far fa-star"
                                    style="margin-right: 2px;"></i>
-                            </div>
+                            </a>
                             <a class="[ btn btn-default ]" style="float: right"
-                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>" >
                                 <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>
                             </a>
                         </div>

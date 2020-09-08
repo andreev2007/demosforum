@@ -22,8 +22,11 @@ class m130524_201442_create_table_user extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->comment('Электронная почта'),
+            'phone' => $this->string()->comment('Телефон'),
+            'telegram' => $this->string()->null()->comment('Telegram'),
+            'whatsapp' => $this->string()->comment('Whatsapp'),
 
-            'status' => $this->smallInteger()->notNull()->defaultValue(10),
+            'status' => $this->smallInteger()->notNull()->defaultValue(9),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
