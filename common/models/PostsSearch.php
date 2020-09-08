@@ -97,7 +97,7 @@ class PostsSearch extends Posts
 
 
         if ($this->search) {
-            $query->orFilterWhere(['like', 'content', $this->search])->orderBy(['created_at' => SORT_DESC])->all();
+            $query->filterWhere(['like', 'content', $this->search])->orderBy(['created_at' => SORT_DESC])->all();
         }
 
 
