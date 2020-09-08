@@ -298,11 +298,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getSubscribedCount()
     {
-        $count = $this->getSubscribed()->count();
-        if ($count === null) {
-            $count = 0;
-        }
-        return $count;
+        return Subscriber::find()->where(['subscriber_id' => $this->id])->count();
     }
 
     /**
