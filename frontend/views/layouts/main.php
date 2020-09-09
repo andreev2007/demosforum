@@ -31,7 +31,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a href="<?= Html::encode(Url::toRoute(['/site/index'])) ?>">
+    <a href="<?= Html::encode(Url::toRoute(['/site/index'])) ?>" class="home-icon">
         <i class="fas fa-home" style="font-size: 22px; color: white"></i>
     </a>
     <a class="navbar-brand" href="<?= Html::encode(Url::to(Yii::$app->homeUrl)) ?>">Demos Forum</a>
@@ -52,7 +52,7 @@ AppAsset::register($this);
             </button>
         </form>
     </div>
-    <button style="border: none; background: none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" style="border: none; background: none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-search" style="font-size: 20px; color: white"></i>
     </button>
