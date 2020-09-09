@@ -31,12 +31,12 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a href="<?= Html::encode(Url::toRoute(['/site/index'])) ?>">
+        <i class="fas fa-home" style="font-size: 22px; color: white"></i>
+    </a>
     <a class="navbar-brand" href="<?= Html::encode(Url::to(Yii::$app->homeUrl)) ?>">Demos Forum</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active active">
-                <a class="nav-link" href="<?= Html::encode(Url::to('/site/index')) ?>"><?= Yii::t('app', 'Home') ?></a>
-            </li>
             <?php if (User::isAdmin()) { ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="<?= Html::encode(Url::to('/admin')) ?>">Админ панель</a>
@@ -52,9 +52,9 @@ AppAsset::register($this);
             </button>
         </form>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button style="border: none; background: none" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-search" style="font-size: 20px; color: white"></i>
     </button>
     <?php if (!Yii::$app->user->isGuest) { ?>
         <div class="nav-item active dropdown">
@@ -75,7 +75,7 @@ AppAsset::register($this);
                         href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => Yii::$app->user->id])) ?>">
                     <?= \lajax\languagepicker\widgets\LanguagePicker::widget([
                         'itemTemplate' => '<li><a href="{link}" class="nav-link" title="{language}"><i id="{language}"></i> <span style="color: black">{name}</span></a></li>',
-                        'activeItemTemplate' => '<a href="{link}" style="margin-left: 13px;" title="{language}"><i id="{language}" ></i> <span style="color: black">{name}</span></a>',
+                        'activeItemTemplate' => '<a href="{link}" style="margin-left: 13px;" title="{language}"><i class="fas fa-globe" style="color: black"></i> <span style="color: black">{name}</span></a>',
                         'parentTemplate' => '<li class="language-picker dropdown-list {size} "><a>{activeItem}<ul>{items}</ul></a></li>',
                         'languageAsset' => 'lajax\languagepicker\bundles\LanguageLargeIconsAsset',      // StyleSheets
                         'languagePluginAsset' => 'lajax\languagepicker\bundles\LanguagePluginAsset',    // JavaScripts
@@ -143,7 +143,7 @@ AppAsset::register($this);
             <a class="nav-link" href="#" id="navbarDropdown" role="button"
                data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false" style="color: white">
-                <i class="fas fa-home" style="font-size: 18px"></i>
+                <i class="fas fa-user-alt" style="font-size: 18px"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="<?= Html::encode(Url::to('/site/signup')) ?>">
@@ -164,7 +164,7 @@ AppAsset::register($this);
                         href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => Yii::$app->user->id])) ?>">
                     <?= \lajax\languagepicker\widgets\LanguagePicker::widget([
                         'itemTemplate' => '<li><a href="{link}" class="nav-link" title="{language}"><i id="{language}"></i> <span style="color: black">{name}</span></a></li>',
-                        'activeItemTemplate' => '<a href="{link}" style="margin-left: 13px;" title="{language}"><i id="{language}" ></i> <span style="color: black">{name}</span></a>',
+                        'activeItemTemplate' => '<a href="{link}" style="margin-left: 13px;" title="{language}"><i class="fas fa-globe" style="color: black"></i> <span style="color: black">{name}</span></a>',
                         'parentTemplate' => '<li class="language-picker dropdown-list {size} "><a>{activeItem}<ul>{items}</ul></a></li>',
                         'languageAsset' => 'lajax\languagepicker\bundles\LanguageLargeIconsAsset',      // StyleSheets
                         'languagePluginAsset' => 'lajax\languagepicker\bundles\LanguagePluginAsset',    // JavaScripts

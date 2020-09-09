@@ -11,7 +11,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('app', 'Log in');
 ?>
-<div class="site-login">
+<div class="site-login" style="margin-top: -50px;">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="row">
@@ -40,7 +40,7 @@ $this->title = Yii::t('app', 'Log in');
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"
              style="display: flex; flex-direction: column; justify-content: center; align-items: center">
-            <div style="margin-bottom: 10px;margin-left: 10px;"><?= Yii::t('app', 'Log in with facebook') ?>:</div>
+            <div style="margin-bottom: 10px;margin-left: 10px;"><?= Yii::t('app', 'Log in with') ?>:</div>
 
             <?= yii\authclient\widgets\AuthChoice::widget([
                 'baseAuthUrl' => ['site/auth'],
