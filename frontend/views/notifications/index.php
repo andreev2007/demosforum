@@ -13,7 +13,7 @@ $this->title = Yii::t('app', 'Notifications');
 ?>
 <div class="notifications-index m-class">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="mb-5 text-center"><?= Html::encode($this->title) ?></h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

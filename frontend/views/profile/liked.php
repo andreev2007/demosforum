@@ -4,8 +4,9 @@ use common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = Yii::t('app','Liked')
+$this->title = Yii::t('app', 'Liked')
 ?>
+    <h1 class="text-center mb-5"><?= $this->title ?></h1>
 
     <div class="container">
         <div class="row">
@@ -25,7 +26,7 @@ $this->title = Yii::t('app','Liked')
                                 <?php } else { ?>
                                     <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $post->user->id])) ?>">
 
-                                        <?= $post->user->first_name . ' ' . $post->user->last_name  ?>
+                                        <?= $post->user->first_name . ' ' . $post->user->last_name ?>
                                     </a>
                                 <?php } ?>
                             </h3>
@@ -52,10 +53,12 @@ $this->title = Yii::t('app','Liked')
                                 <i class="fas fa-eye" style="margin-right: 2px;"></i>
                                 <?= $post->views ?>
                             </div>
-                            <a href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $post->id])) ?>" type="button" class="[ btn btn-default ]">
+                            <a href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $post->id])) ?>"
+                               type="button" class="[ btn btn-default ]">
                                 <i class="far fa-share-square"></i>
                             </a>
-                            <a class="[ btn btn-default ]" style="float: right" href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
+                            <a class="[ btn btn-default ]" style="float: right"
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $post->getComments()->count() ?>
                             </a>
                         </div>

@@ -6,6 +6,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app','Starred');
 ?>
+<h1 class="text-center mb-5"><?= $this->title ?></h1>
 
 <div class="container">
     <div class="row">

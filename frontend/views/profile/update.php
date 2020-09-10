@@ -10,7 +10,7 @@ $this->title = Yii::t('app','Update Profile');
 ?>
 <div class="posts-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="text-center mb-5"><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
 

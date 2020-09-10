@@ -6,12 +6,15 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app','Subscribed');
 ?>
+
+<h1 class="text-center mb-5"><?= $this->title ?></h1>
+
 <section id="team" class="pb-5">
     <div class="container">
         <div class="row">
             <?php /** @var \yii\data\ActiveDataProvider $dataProvider */
             foreach ($dataProvider->getModels() as $user): ?>
-                <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="col-xs-12 col-sm-4 col-md-3">
                     <div class="image-flip">
                         <div class="mainflip flip-0">
                             <div class="frontside">

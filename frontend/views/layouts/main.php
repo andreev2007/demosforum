@@ -71,16 +71,7 @@ AppAsset::register($this);
                                style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(90deg)"></i>
                         </button>
                     </a>
-                    <button class="dropdown-item"
-                            href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => Yii::$app->user->id])) ?>">
-                        <?= \lajax\languagepicker\widgets\LanguagePicker::widget([
-                            'itemTemplate' => '<li><a href="{link}" class="nav-link" title="{language}"><i id="{language}"></i> <span style="color: black">{name}</span></a></li>',
-                            'activeItemTemplate' => '<a href="{link}" style="margin-left: 13px;" title="{language}"><i class="fas fa-globe" style="color: black"></i> <span style="color: black">{name}</span></a>',
-                            'parentTemplate' => '<li class="language-picker dropdown-list {size} "><a>{activeItem}<ul>{items}</ul></a></li>',
-                            'languageAsset' => 'lajax\languagepicker\bundles\LanguageLargeIconsAsset',      // StyleSheets
-                            'languagePluginAsset' => 'lajax\languagepicker\bundles\LanguagePluginAsset',    // JavaScripts
-                        ]); ?>
-                    </button>
+
                     <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/liked'])) ?>">
                         <button class="btn" style="outline: none"><?= Yii::t('app', 'Liked') ?> <i
                                     class="fas fa-heart"
@@ -124,6 +115,16 @@ AppAsset::register($this);
                             <?= Yii::t('app', 'Settings') . '<i class="fas fa-cog" style="margin-left: 2px;font-size: 16px;color: grey;"></i>' ?>
                         </button>
                     </a>
+                    <button class="dropdown-item"
+                            href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => Yii::$app->user->id])) ?>">
+                        <?= \lajax\languagepicker\widgets\LanguagePicker::widget([
+                            'itemTemplate' => '<li><a href="{link}" class="nav-link" title="{language}"><i id="{language}"></i> <span style="color: black">{name}</span></a></li>',
+                            'activeItemTemplate' => '<a href="{link}" style="margin-left: 13px;" title="{language}"><i class="fas fa-globe" style="color: black"></i> <span style="color: black">{name}</span></a>',
+                            'parentTemplate' => '<li class="language-picker dropdown-list {size} "><a>{activeItem}<ul>{items}</ul></a></li>',
+                            'languageAsset' => 'lajax\languagepicker\bundles\LanguageLargeIconsAsset',      // StyleSheets
+                            'languagePluginAsset' => 'lajax\languagepicker\bundles\LanguagePluginAsset',    // JavaScripts
+                        ]); ?>
+                    </button>
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><?= Html::beginForm(['/site/logout'], 'post')
