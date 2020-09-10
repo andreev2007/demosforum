@@ -10,6 +10,10 @@ use yii\helpers\Html;
 $this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '...');
 \yii\web\YiiAsset::register($this);
 
+$this->registerMetaTag([
+    'name' => 'title',
+    'content' => $model->content . 'Demos Forum, Демос Форум'
+])
 ?>
 
 <div class="posts-view">

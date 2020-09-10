@@ -10,6 +10,12 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('app', 'Log in');
+
+
+$this->registerMetaTag([
+    'name' => 'title',
+    'content' => 'Demos Forum login, Демос Форум войти, Демос Форум логин, Вуьщы Ащкгь дщпшт'
+])
 ?>
 <div class="site-login" style="margin-top: -50px;">
     <h1><?= Html::encode($this->title) ?></h1>

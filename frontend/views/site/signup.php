@@ -10,6 +10,12 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('app', 'Registration');
+
+
+$this->registerMetaTag([
+    'name' => 'title',
+    'content' => 'Demos Forum signup, Демос Форум зарегистрироваться, Демос Форум сайнап, Вуьщы Ащкгь ышптгз, Demos Forum registration'
+])
 ?>
 <div class="site-signup" style="margin-top: -50px;">
     <h1><?= $this->title ?></h1>
