@@ -15,9 +15,9 @@ $this->title = Yii::t('app','Liked')
                     <div class="[ panel panel-default ] panel-google-plus">
                         <div class="panel-heading">
                             <a style="font-size: 110%; color: #504e4e; font-weight: 500;width: 90%;word-break: break-word;"
-                           href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
-                            <?= mb_strimwidth($post->content, 0, 200, "..."); ?>
-                        </a>
+                               href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $post->id])) ?>">
+                                <?= mb_strimwidth($post->content, 0, 200, "..."); ?>
+                            </a>
                             <h3>
                                 <?= Yii::t('app', 'Author') ?>:
                                 <?php if ($post->user->id === Yii::$app->user->id) { ?>
@@ -48,6 +48,10 @@ $this->title = Yii::t('app','Liked')
                                 <i class="icon-star <?= User::isStarred($post->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
+                            <div class="[ btn btn-default ]">
+                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                                <?= $post->views ?>
+                            </div>
                             <a href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $post->id])) ?>" type="button" class="[ btn btn-default ]">
                                 <i class="far fa-share-square"></i>
                             </a>

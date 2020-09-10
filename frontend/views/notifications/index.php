@@ -3,13 +3,13 @@
 use common\models\Notifications;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\NotificationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Notifications');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="notifications-index m-class">
 
@@ -17,26 +17,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            [
-                'attribute' => 'type',
-                'filter' => Notifications::map(),
-                'value' => function ($model) {
-                    return Notifications::map()[$model->type] ?? '';
-                }
-            ],
-            [
-                'format' => 'raw',
-                'attribute' => 'post_id',
-                'value' => function ($model) {
-                    return Html::a(mb_strimwidth($model->post->content, 0, 30, "..."), ['/posts/view', 'id' => $model->id]);
-                },
-            ],
-        ],
-    ]); ?>
+    <div class="container-fluid">
+        <div class="row">
+            <?php foreach ($dataProvider->getModels() as $notification) { ?>
+                <div class="col-6" style="background: #efecec;padding-top: 10px;border-bottom: 1px solid white;">
+                    <p><?= Notifications::map()[$notification->type] ?></p>
+                </div>
+                <div class="col-6" style="background: #efecec;padding-top: 10px;border-bottom: 1px solid white;">
+                    <a href="<?= Url::toRoute(['/posts/view', 'id' => $notification->post->id]) ?>">
+                        <?= mb_strimwidth($notification->post->content, 0, 20, "...") ?>
+                    </a>
+                    <p style="font-size: 12px; color: grey; float: right"><?= $notification->post->getDate() ?></p>
+                </div>
+            <?php } ?>
+
+        </div>
+    </div>
+
 
 
 </div>

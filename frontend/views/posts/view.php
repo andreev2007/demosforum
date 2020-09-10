@@ -45,16 +45,21 @@ $this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '..
                                          <?= $model->getLikesCount() ?>
                                 </span>
                             </button>
-                            <a class="[ btn btn-default ]"
-                               href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $model->id])) ?>">
-                                <i class="far fa-share-square"></i>
-                            </a>
                             <button type="button"
                                     data-post_id='<?= $model->id; ?>'
                                     class="[ btn btn-default ] <?= User::isStarred($model->id) ? 'starred' : 'star' ?>">
                                 <i class="icon-star <?= User::isStarred($model->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
+                            <div class="[ btn btn-default ]">
+                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                                <?= $model->views ?>
+                            </div>
+                            <a class="[ btn btn-default ]"
+                               href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $model->id])) ?>">
+                                <i class="far fa-share-square"></i>
+                            </a>
+
                             <a class="[ btn btn-default ]" style="float: right"
                                href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>
@@ -75,6 +80,11 @@ $this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '..
                                 <i class="icon-star far fa-star"
                                    style="margin-right: 2px;"></i>
                             </a>
+
+                            <div class="[ btn btn-default ]">
+                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                                <?= $model->views ?>
+                            </div>
                             <a class="[ btn btn-default ]" style="float: right"
                                href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>

@@ -9,7 +9,6 @@ use yii\helpers\Html;
 /* @var $model common\models\Posts */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>
@@ -58,6 +57,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <i class="icon-star <?= User::isStarred($model->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
+
+                            <div class="[ btn btn-default ]">
+                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                                <?= $model->views ?>
+                            </div>
                             <a class="[ btn btn-default ]" style="float: right"
                                href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>
@@ -75,6 +79,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="[ btn btn-default ]">
                                 <i class="icon-star far fa-star"
                                    style="margin-right: 2px;"></i>
+                            </div>
+
+                            <div class="[ btn btn-default ]">
+                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                                <?= $model->views ?>
                             </div>
                             <a class="[ btn btn-default ]" style="float: right"
                                href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">

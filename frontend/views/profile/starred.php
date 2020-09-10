@@ -48,6 +48,10 @@ $this->title = Yii::t('app','Starred');
                             <i class="icon-star <?= User::isStarred($post->id) ? 'fas' : 'far' ?> fa-star"
                                style="margin-right: 2px;"></i>
                         </button>
+                        <div class="[ btn btn-default ]">
+                            <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                            <?= $post->views ?>
+                        </div>
                         <a type="button" class="[ btn btn-default ]" href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $post->id])) ?>">
                             <i class="far fa-share-square"></i>
                         </a>

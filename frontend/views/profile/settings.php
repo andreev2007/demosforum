@@ -14,12 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="m-class">
     <div class="mt-3">
-        <h4 style="color: #212020"><?= Yii::t('app', 'Change password') ?></h4>
         <a href="<?= Html::encode(Url::toRoute(['/site/request-password-reset'])) ?>"
            class="btn btn-primary"><?= Yii::t('app', 'Change password') ?></a>
     </div>
     <div class="mt-3">
-        <h4 style="color: #212020"><?= Yii::t('app', 'Change avatar') ?></h4>
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
         <?= $form->field($user, 'avatarUpload')->fileInput()->label(false) ?>

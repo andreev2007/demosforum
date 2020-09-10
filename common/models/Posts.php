@@ -19,6 +19,7 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property string $content Описание
  * @property string|null $image Картинка
  * @property int|null $likes Лайки
+ * @property int|null $views Просмотры
  * @property int $created_by
  * @property int $updated_by
  * @property int $created_at

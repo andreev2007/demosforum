@@ -22,7 +22,7 @@ $this->title = Yii::t('app', 'Home');
         <div class="row">
             <div class="col-lg-12 m-class">
                 <?php if (!Yii::$app->user->isGuest) { ?>
-                    <h3 style="color: #2f2e2e"><?= Yii::t('app', 'What do you want to write,') ?> <?= $user->getName() ?>
+                    <h3 style="color: #2f2e2e"><?= Yii::t('app', 'What do you want to write,') ?><br> <?= $user->getName() ?>
                         ?</h3>
                     <div style="margin-bottom: 1rem;">
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
@@ -111,6 +111,10 @@ $this->title = Yii::t('app', 'Home');
                                         <i class="icon-star <?= User::isStarred($question->id) ? 'fas' : 'far' ?> fa-star"
                                            style="margin-right: 2px;"></i>
                                     </button>
+                                    <div class="[ btn btn-default ]">
+                                        <i class="fas fa-eye" style="margin-right: 2px;"></i>
+                                        <?= $question->views ?>
+                                    </div>
                                     <a class="[ btn btn-default ]"
                                        href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $question->id])) ?>">
                                         <i class="far fa-share-square"></i>
