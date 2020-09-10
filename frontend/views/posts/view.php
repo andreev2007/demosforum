@@ -22,9 +22,9 @@ $this->registerMetaTag([
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500;width: 90%;word-break: break-word;">
+                        <a href="#" style="font-size: 110%;text-decoration: none; color: #504e4e; font-weight: 500;width: 90%;word-break: break-word;">
                             <?= strip_tags($model->content) ?>
-                        </p>
+                        </a>
                         <h3>
                             <?= Yii::t('app', 'Author') ?>:
                             <?php if ($model->user->id === Yii::$app->user->id) { ?>

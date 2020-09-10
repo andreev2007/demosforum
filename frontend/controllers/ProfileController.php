@@ -61,6 +61,21 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function actionCommented()
+    {
+        $user = Yii::$app->user->identity;
+        $dataProvider = new ActiveDataProvider(
+            [
+                'query' =>  $user->getCommentedPosts()
+            ]
+        );
+
+        return $this->render('commented', [
+            'user' => $user,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionSubscribed()
     {
         $user = Yii::$app->user->identity;

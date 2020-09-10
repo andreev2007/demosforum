@@ -32,26 +32,10 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a href="<?= Html::encode(Url::toRoute(['/site/index'])) ?>" class="home-icon">
-        <i class="fas fa-home" style="font-size: 24px; color: white"></i>
+        <i class="fas fa-hotel" style="font-size: 24px; color: white"></i>
     </a>
     <a class="navbar-brand" href="<?= Html::encode(Url::to(Yii::$app->homeUrl)) ?>">Demos Forum</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <?php if (User::isAdmin()) { ?>
-                <li class="nav-item active">
-                    <a class="nav-link" href="<?= Html::encode(Url::to('/admin')) ?>">Админ панель</a>
-                </li>
-            <?php } ?>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" method="get" action="<?= Html::encode(Url::toRoute('/site/index')) ?>">
-            <input class="form-control mr-sm-2 search-input" name="search" type="search"
-                   placeholder="<?= Yii::t('app', 'What are you searching?') ?>"
-                   aria-label="Search">
-            <button class="btn btn-info border-0 search-btn" type="submit">
-                <i class="fas fa-search search-icon"></i>
-            </button>
-        </form>
-    </div>
+
     <div style="float: right; display: flex">
         <button class="navbar-toggler" style="border: none; background: none" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent"
@@ -69,8 +53,22 @@ AppAsset::register($this);
                     <a class="dropdown-item"
                        href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => Yii::$app->user->id])) ?>">
                         <button class="btn" style="outline: none"><?= Yii::t('app', 'My profile') ?> <i
-                                class="far fa-user-circle"
-                                style="margin-left: 2px;font-size: 16px;color: grey;"></i>
+                                    class="far fa-user-circle"
+                                    style="margin-left: 2px;font-size: 16px;color: grey;"></i>
+                        </button>
+                    </a>
+                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribed'])) ?>">
+                        <button class="btn" style="outline: none">
+                            <?= Yii::t('app', 'Subscribed') ?>
+                            <i class="fas fa-wifi"
+                               style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(-90deg)"></i>
+                        </button>
+                    </a>
+                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribers'])) ?>">
+                        <button class="btn" style="outline: none">
+                            <?= Yii::t('app', 'Subscribers') ?>
+                            <i class="fas fa-wifi"
+                               style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(90deg)"></i>
                         </button>
                     </a>
                     <button class="dropdown-item"
@@ -85,28 +83,20 @@ AppAsset::register($this);
                     </button>
                     <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/liked'])) ?>">
                         <button class="btn" style="outline: none"><?= Yii::t('app', 'Liked') ?> <i
-                                class="fas fa-heart"
-                                style="margin-left: 2px;font-size: 16px"></i>
-                        </button>
-                    </a>
-                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribed'])) ?>">
-                        <button class="btn" style="outline: none">
-                            <?= Yii::t('app', 'Subscribed') ?>
-                            <i class="fas fa-wifi"
-                               style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(90deg)"></i>
-                        </button>
-                    </a>
-                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribers'])) ?>">
-                        <button class="btn" style="outline: none">
-                            <?= Yii::t('app', 'Subscribers') ?>
-                            <i class="fas fa-wifi"
-                               style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(-90deg)"></i>
+                                    class="fas fa-heart"
+                                    style="margin-left: 2px;font-size: 16px"></i>
                         </button>
                     </a>
                     <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/starred'])) ?>">
                         <button class="btn" style="outline: none"><?= Yii::t('app', 'Starred') ?> <i
-                                class="fas fa-star"
-                                style="margin-left: 2px;font-size: 16px"></i>
+                                    class="fas fa-star"
+                                    style="margin-left: 2px;font-size: 16px"></i>
+                        </button>
+                    </a>
+                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/commented'])) ?>">
+                        <button class="btn" style="outline: none"><?= Yii::t('app', 'Commented') ?> <i
+                                    class="far fa-comment-alt"
+                                    style="margin-left: 2px;font-size: 16px; color: grey"></i>
                         </button>
                     </a>
                     <a class="dropdown-item" href="<?= Html::encode(Url::to('/notifications/index')) ?>">
@@ -179,6 +169,23 @@ AppAsset::register($this);
                 </div>
             </div>
         <?php } ?>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <?php if (User::isAdmin()) { ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?= Html::encode(Url::to('/admin')) ?>">Админ панель</a>
+                </li>
+            <?php } ?>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="get" action="<?= Html::encode(Url::toRoute('/site/index')) ?>">
+            <input class="form-control mr-sm-2 search-input" name="search" type="search"
+                   placeholder="<?= Yii::t('app', 'What are you searching?') ?>"
+                   aria-label="Search">
+            <button class="btn btn-info border-0 search-btn" type="submit">
+                <i class="fas fa-search search-icon"></i>
+            </button>
+        </form>
     </div>
 </nav>
 <div class="wrap">

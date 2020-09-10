@@ -71,7 +71,6 @@ class PostsController extends Controller
         ]);
     }
 
-
     public function actionDelete($id)
     {
         if ($this->findModel($id)->created_by !== Yii::$app->user->id) {
@@ -83,15 +82,31 @@ class PostsController extends Controller
         return $this->redirect(['/site/index']);
     }
 
+    public function actionCommentDelete($id)
+    {
+        $comment = Comments::findOne($id);
+        if ($comment->created_by !== Yii::$app->user->id) {
+            Yii::$app->session->setFlash('warning', Yii::t('app', 'Sorry we did not find what you wanted'));
+            return $this->redirect(['/posts/view', 'id' => $comment->id]);
+        } else {
+            $comment->delete();
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Your comment was deleted'));
+        }
+        return $this->redirect(['/view', 'id' => $comment->id]);
+
+    }
+
     public function actionView($id)
     {
         $post = Posts::findOne($id);
         $comment = Comments::addComment($id);
-        $comments = $post->getComments()
-            ->with('children')
-            ->andWhere(['status' => 10])
-            ->andWhere(['parent_id' => null])->orderBy(['created_at' => SORT_DESC])->all();
 
+        if ($comments = $post->comments !== null) {
+            $comments = $post->getComments()
+                ->with('children')
+                ->andWhere(['status' => 10])
+                ->andWhere(['parent_id' => null])->orderBy(['created_at' => SORT_DESC])->all();
+        }
         if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
             Yii::$app->session->setFlash('success', Yii::t('app', 'The comment is successfully added!'));
             return $this->refresh();
@@ -146,6 +161,23 @@ class PostsController extends Controller
         }
         return $this->render('update', [
             'model' => $post
+        ]);
+    }
+
+    public function actionCommentUpdate($id)
+    {
+        $comment = Comments::findOne($id);
+        $post = Posts::findOne($comment->post_id);
+        if ($comment->created_by !== Yii::$app->user->id) {
+            Yii::$app->session->setFlash('warning', 'Извините, но мы не нашли что вы хотели');
+            return $this->redirect('/site/index');
+        }
+
+        if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
+            return $this->redirect(['view', 'id' => $post->id]);
+        }
+        return $this->render('update_comment', [
+            'model' => $comment
         ]);
     }
 

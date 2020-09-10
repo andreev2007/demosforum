@@ -73,7 +73,6 @@ class Comments extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => Yii::t('app', 'Comment'),
             'post_id' => 'Имя',
-            'likes' => 'Лайк',
             'parent_id' => 'Родительский комментарий',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',

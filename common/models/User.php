@@ -344,6 +344,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(UserSaved::className(), ['user_id' => 'id']);
     }
 
+    public function getCommented()
+    {
+        return $this->hasMany(Comments::className(), ['created_by' => 'id']);
+    }
+
     public function getLikedPosts()
     {
         return $this->hasMany(Posts::className(), ['id' => 'post_id'])->via('liked');
@@ -352,6 +357,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getStarredPosts()
     {
         return $this->hasMany(Posts::className(), ['id' => 'post_id'])->via('starred');
+    }
+
+    public function getCommentedPosts()
+    {
+        return $this->hasMany(Posts::className(), ['id' => 'post_id'])->via('commented');
     }
 
     public function afterSave($insert, $changedAttributes)

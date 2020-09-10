@@ -39,6 +39,18 @@ use yii\widgets\ActiveForm;
                                 <span class="float-right" style="color: grey">
                                     <?= $review->getDate() ?>
                                 </span>
+                                <?php if ($review->user->id === Yii::$app->user->id) { ?>
+                                    <span class="float-left ml-2">
+                                         <?= Html::a(Yii::t('app', 'Update'), ['comment-update', 'id' => $review->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                                         <?= Html::a(Yii::t('app', 'Delete'), ['comment-delete', 'id' => $review->id], [
+                                             'class' => 'btn btn-danger btn-sm',
+                                             'data' => [
+                                                 'confirm' => 'Are you sure you want to delete this item?',
+                                                 'method' => 'post',
+                                             ],
+                                         ]) ?>
+                                    </span>
+                                <?php } ?>
                             </p>
                             <div class="clearfix"></div>
                             <p><?= $review->name ?></p>
