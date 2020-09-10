@@ -32,7 +32,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a href="<?= Html::encode(Url::toRoute(['/site/index'])) ?>" class="home-icon">
-        <i class="fas fa-hotel" style="font-size: 24px; color: white"></i>
+        <i class="fas fa-home" style="font-size: 24px; color: white"></i>
     </a>
     <a class="navbar-brand" href="<?= Html::encode(Url::to(Yii::$app->homeUrl)) ?>">Demos Forum</a>
 
