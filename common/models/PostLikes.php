@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use Yii;
+
 /**
  * This is the model class for table "post_likes".
  *
@@ -15,7 +17,6 @@ namespace common\models;
  */
 class PostLikes extends \yii\db\ActiveRecord
 {
-
 
     /**
      * {@inheritdoc}
@@ -69,6 +70,11 @@ class PostLikes extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDatetime($this->created_at);
     }
 
     public function afterSave($insert, $changedAttributes)

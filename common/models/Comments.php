@@ -133,7 +133,7 @@ class Comments extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-        return Yii::$app->formatter->asDate($this->created_at);
+        return Yii::$app->formatter->asDatetime($this->created_at);
     }
 
     public static function addComment($id)
