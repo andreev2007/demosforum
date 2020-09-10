@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = Yii::t('app','Tech Support');
 ?>
 <div class="site-contact m-class">
-    <h1 class="text-center mb-5"><?= Html::encode($this->title) ?></h1>
+    <h1 class="text-center mb-3" style="margin-top: -50px;"><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Yii::t('app', 'If you have any questions please contact') ?>:

@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 $user = new User();
 $this->title = Yii::t('app', 'Settings');
 ?>
-<h1 class="text-center mb-5"><?= $this->title ?></h1>
+<h1 class="text-center mb-3" style="margin-top: -50px;"><?= $this->title ?></h1>
 
 <div class="m-class">
     <div class="mt-3">

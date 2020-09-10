@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 \yii\web\YiiAsset::register($this);
 $this->title = $user->first_name
 ?>
-<h1 class="text-center mb-5"><?= Yii::t('app','Profile') ?></h1>
+<h1 class="text-center mb-3" style="margin-top: -50px;"><?= Yii::t('app','Profile') ?></h1>
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-2">

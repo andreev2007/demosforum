@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('app','Commented');
 ?>
-<h1 class="text-center mb-5"><?= $this->title ?></h1>
+<h1 class="text-center mb-3" style="margin-top: -50px;"><?= $this->title ?></h1>
 <div class="container">
     <div class="row">
         <?php /** @var \yii\data\ActiveDataProvider $dataProvider */

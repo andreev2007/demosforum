@@ -57,18 +57,19 @@ AppAsset::register($this);
                                     style="margin-left: 2px;font-size: 16px;color: grey;"></i>
                         </button>
                     </a>
-                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribed'])) ?>">
-                        <button class="btn" style="outline: none">
-                            <?= Yii::t('app', 'Subscribed') ?>
-                            <i class="fas fa-wifi"
-                               style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(-90deg)"></i>
-                        </button>
-                    </a>
+                    
                     <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribers'])) ?>">
                         <button class="btn" style="outline: none">
                             <?= Yii::t('app', 'Subscribers') ?>
                             <i class="fas fa-wifi"
                                style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(90deg)"></i>
+                        </button>
+                    </a>
+                    <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribed'])) ?>">
+                        <button class="btn" style="outline: none">
+                            <?= Yii::t('app', 'Subscribed') ?>
+                            <i class="fas fa-wifi"
+                               style="color: grey;margin-left: 2px;font-size: 16px; transform: rotate(-90deg)"></i>
                         </button>
                     </a>
 

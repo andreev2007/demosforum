@@ -26,7 +26,7 @@ $this->registerMetaTag([
         <div class="row">
             <div class="col-lg-12 m-class">
                 <?php if (!Yii::$app->user->isGuest) { ?>
-                    <h3 style="color: #2f2e2e"><?= Yii::t('app', 'What do you want to write,') ?>
+                    <h3 style="color: #2f2e2e; margin-top: -30px;margin-bottom: 30px;"><?= Yii::t('app', 'What do you want to write,') ?>
                         <br> <?= $user->getName() ?>
                         ?</h3>
                     <div style="margin-bottom: 1rem;">
