@@ -26,13 +26,13 @@ $this->registerMetaTag([
         <div class="row">
             <div class="col-lg-12 m-class">
                 <?php if (!Yii::$app->user->isGuest) { ?>
-                    <h3 style="color: #2f2e2e; margin-top: -30px;margin-bottom: 30px;"><?= Yii::t('app', 'What do you want to write,') ?>
+                    <h3 class="content-write" style="color: #2f2e2e; margin-top: -30px;margin-bottom: 30px;"><?= Yii::t('app', 'What do you want to write,') ?>
                         <br> <?= $user->getName() ?>
                         ?</h3>
                     <div style="margin-bottom: 1rem;">
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-                        <div class="row mt-3">
+                        <div class="row mt-3 content-write">
                             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                                 <?= $form->field($post, 'content')->widget(\common\widgets\RedactorCode::className(),
                                     [
