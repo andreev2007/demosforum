@@ -19,6 +19,7 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property string $content Описание
  * @property string|null $image Картинка
  * @property int|null $likes Лайки
+ * @property int|null $views Лайки
  * @property int $created_by
  * @property int $updated_by
  * @property int $created_at
@@ -95,7 +96,7 @@ class Posts extends \yii\db\ActiveRecord
             [['content'], 'required'],
             [['created_by', 'updated_by', 'created_at', 'updated_at'], 'integer'],
             [['content'], 'string', 'max' => 1000],
-            [['reposters', 'image','thumb'], 'safe'],
+            [['reposters', 'image','thumb', 'views'], 'safe'],
             ['imageUpload', 'file', 'extensions' => 'jpeg, jpg, png', 'on' => ['insert', 'update']],
         ];
     }
@@ -120,7 +121,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-        return Yii::$app->formatter->asDate($this->created_at);
+        return Yii::$app->formatter->asDatetime($this->created_at);
     }
 
     public function getLikesCount()

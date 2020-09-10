@@ -6,15 +6,15 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\Posts */
 
-$this->title = Yii::t('app','Update Profile');
-$this->params['breadcrumbs'][] = ['label' => $model->first_name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Редактировать';
+$this->title = Yii::t('app', 'Update Profile');
 ?>
 <div class="posts-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'avatarUpload')->fileInput()->label(false) ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 
     <?= $form->field($model, 'whatsapp')->textInput(['maxlength' => true]) ?>
 
-   <div class="form-group">
+    <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 

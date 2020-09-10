@@ -8,8 +8,6 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Posts */
 
 $this->title = 'Редактировать: ' . strip_tags(strip_tags($model->content));
-$this->params['breadcrumbs'][] = ['label' => strip_tags(strip_tags($model->content)), 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="posts-update m-class">
 
