@@ -5,6 +5,7 @@
 /* @var $content string */
 
 use common\models\Notifications;
+use kmergen\LanguageSwitcher;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\assets\AppAsset;
@@ -57,7 +58,7 @@ AppAsset::register($this);
     </button>
     <?php if (!Yii::$app->user->isGuest) { ?>
         <div class="nav-item active dropdown">
-            <a class="nav-link" id="navbarDropdown" role="button"
+            <a class="nav-link" href="#" id="navbarDropdown" role="button"
                data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false" style="color: white">
                 <i class="fas fa-user-alt" style="font-size: 18px"></i>
@@ -89,13 +90,11 @@ AppAsset::register($this);
                 <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribed'])) ?>">
                     <button class="btn" style="outline: none">
                         <?= Yii::t('app', 'Subscribed') ?>
-                        <i class="fas fa-wifi" style="margin-left: 2px;font-size: 16px; transform: rotate(15deg)"></i>
                     </button>
                 </a>
                 <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/subscribers'])) ?>">
                     <button class="btn" style="outline: none">
                         <?= Yii::t('app', 'Subscribers') ?>
-                        <i class="fas fa-wifi" style="margin-left: 2px;font-size: 16px; transform: rotate(-15deg)"></i>
                     </button>
                 </a>
                 <a class="dropdown-item" href="<?= Html::encode(Url::toRoute(['/profile/starred'])) ?>">
@@ -178,6 +177,9 @@ AppAsset::register($this);
 <div class="wrap">
 
     <div class="container">
+        <div class="breadcrumbs">
+            <?= \yii\bootstrap4\Breadcrumbs::widget(['links' => $this->params['breadcrumbs'] ?? [],]) ?>
+        </div>
         <div style="margin-left: 1rem;margin-right: 1rem;"><?= Alert::widget() ?></div>
         <?= $content ?>
     </div>

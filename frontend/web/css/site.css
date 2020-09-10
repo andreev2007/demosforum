@@ -470,28 +470,3 @@ a.desc:after {
         margin-right: 0;
     }
 }
-
-@media screen and (min-width: 720px) and (max-width: 992px) {
-    .navbar-toggler {
-        margin-right: -30%;
-    }
-}
-
-@media screen and (min-width: 500px) and (max-width: 720px) {
-    .navbar-toggler {
-        margin-right: -28%;
-    }
-}
-
-@media screen and (min-width: 400px) and (max-width: 500px) {
-    .navbar-toggler {
-        margin-right: -20%;
-    }
-}
-
-@media screen and (min-width: 300px) and (max-width: 400px) {
-    .navbar-toggler {
-        margin-right: -25%;
-    }
-}
-

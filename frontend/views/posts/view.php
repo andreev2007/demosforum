@@ -1,6 +1,5 @@
 <?php
 
-use common\models\Posts;
 use common\models\User;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -12,16 +11,16 @@ $this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '..
 \yii\web\YiiAsset::register($this);
 
 ?>
-<?= $model->views ?>
+
 <div class="posts-view">
     <div class="container">
         <div class="row">
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <a href="#" style="text-decoration: none;font-size: 110%; color: #504e4e; font-weight: 500;width: 90%;word-break: break-word;">
+                        <p style="font-size: 110%; color: #504e4e; font-weight: 500;width: 90%;word-break: break-word;">
                             <?= strip_tags($model->content) ?>
-                        </a>
+                        </p>
                         <h3>
                             <?= Yii::t('app', 'Author') ?>:
                             <?php if ($model->user->id === Yii::$app->user->id) { ?>
@@ -46,24 +45,16 @@ $this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '..
                                          <?= $model->getLikesCount() ?>
                                 </span>
                             </button>
+                            <a class="[ btn btn-default ]"
+                               href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $model->id])) ?>">
+                                <i class="far fa-share-square"></i>
+                            </a>
                             <button type="button"
                                     data-post_id='<?= $model->id; ?>'
                                     class="[ btn btn-default ] <?= User::isStarred($model->id) ? 'starred' : 'star' ?>">
                                 <i class="icon-star <?= User::isStarred($model->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
-                            <div class="[ btn btn-default ]">
-                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
-                                <?php if ($model->views == null) { ?>
-                                    0
-                                <?php } else { ?>
-                                    <?= $model->views ?>
-                                <?php } ?>
-                            </div>
-                            <a class="[ btn btn-default ]"
-                               href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $model->id])) ?>">
-                                <i class="far fa-share-square"></i>
-                            </a>
                             <a class="[ btn btn-default ]" style="float: right"
                                href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $model->getComments()->count() ?>

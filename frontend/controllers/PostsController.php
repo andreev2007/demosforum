@@ -100,8 +100,7 @@ class PostsController extends Controller
         }
 
         if ($post->status == 10) {
-            Posts::updateAll(['views' => (int)$post->views + 1],['id' => $post->id]);
-            //   $post;
+         //   $post;
         } else {
             return $this->redirect(['/site/index']);
         }

@@ -19,11 +19,10 @@ $this->title = Yii::t('app', 'Home');
 <div class="site-index">
     <div class="body-content">
 
-        <div class="row" style="margin-left: .2rem;margin-right: .2rem;">
+        <div class="row">
             <div class="col-lg-12 m-class">
                 <?php if (!Yii::$app->user->isGuest) { ?>
-                    <h3 style="color: #2f2e2e"><?= Yii::t('app', 'What do you want to write,') ?>
-                        <br><?= $user->getName() ?>
+                    <h3 style="color: #2f2e2e"><?= Yii::t('app', 'What do you want to write,') ?> <?= $user->getName() ?>
                         ?</h3>
                     <div style="margin-bottom: 1rem;">
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
@@ -49,7 +48,7 @@ $this->title = Yii::t('app', 'Home');
                 <?php } ?>
 
                 <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
-                    <h5 class="mb-2"><?= Yii::t('app', 'Posts') ?></h5>
+                    <h5 class="mb-2"><?= Yii::t('app','Posts') ?></h5>
                     <?php $form = ActiveForm::begin([
                         'action' => '/',
                         'options' =>
@@ -112,14 +111,6 @@ $this->title = Yii::t('app', 'Home');
                                         <i class="icon-star <?= User::isStarred($question->id) ? 'fas' : 'far' ?> fa-star"
                                            style="margin-right: 2px;"></i>
                                     </button>
-                                    <div class="[ btn btn-default ]">
-                                        <i class="fas fa-eye" style="margin-right: 2px;"></i>
-                                        <?php if ($question->views == null) { ?>
-                                            0
-                                        <?php } else { ?>
-                                            <?= $question->views ?>
-                                        <?php } ?>
-                                    </div>
                                     <a class="[ btn btn-default ]"
                                        href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $question->id])) ?>">
                                         <i class="far fa-share-square"></i>
@@ -131,30 +122,18 @@ $this->title = Yii::t('app', 'Home');
                                 </div>
                             <?php } else { ?>
                                 <div class="panel-footer">
-                                    <a class="[ btn btn-default ]"
-                                       href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
+                                    <a class="[ btn btn-default ]" href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
                                         <i class="icon-heart far fa-heart"
                                            style="margin-right: 2px;"></i>
                                         <span class="likes-count">
                                             <?= $question->getLikesCount() ?>
                                         </span>
                                     </a>
-                                    <a href="<?= Html::encode(Url::toRoute(['site/login'])) ?>"
-                                       class="[ btn btn-default ]">
+                                    <a href="<?= Html::encode(Url::toRoute(['site/login'])) ?>" class="[ btn btn-default ]">
                                         <i class="icon-star far fa-star"
                                            style="margin-right: 2px;"></i>
                                     </a>
-
-                                    <div class="[ btn btn-default ]">
-                                        <i class="fas fa-eye" style="margin-right: 2px;"></i>
-                                        <?php if ($question->views == null) { ?>
-                                            0
-                                        <?php } else { ?>
-                                            <?= $question->views ?>
-                                        <?php } ?>
-                                    </div>
-                                    <a class="[ btn btn-default ]" style="float: right"
-                                       href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
+                                    <a class="[ btn btn-default ]" style="float: right" href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
                                         <i class="far fa-comment-alt"></i> <?= $question->getComments()->count() ?>
                                     </a>
                                 </div>

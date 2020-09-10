@@ -108,15 +108,6 @@ $this->title = $user->first_name
                                 <i class="icon-star <?= User::isStarred($question->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
-
-                            <div class="[ btn btn-default ]">
-                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
-                                <?php if ($question->views == null) { ?>
-                                    0
-                                <?php } else { ?>
-                                    <?= $question->views ?>
-                                <?php } ?>
-                            </div>
                             <a class="[ btn btn-default ]"
                                href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $question->id])) ?>">
                                 <i class="far fa-share-square"></i>
@@ -139,15 +130,6 @@ $this->title = $user->first_name
                                 <i class="icon-star far fa-star"
                                    style="margin-right: 2px;"></i>
                             </a>
-
-                            <div class="[ btn btn-default ]">
-                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
-                                <?php if ($question->views == null) { ?>
-                                    0
-                                <?php } else { ?>
-                                    <?= $question->views ?>
-                                <?php } ?>
-                            </div>
                             <a class="[ btn btn-default ]" style="float: right"
                                href="<?= Html::encode(Url::toRoute(['site/login'])) ?>">
                                 <i class="far fa-comment-alt"></i> <?= $question->getComments()->count() ?>

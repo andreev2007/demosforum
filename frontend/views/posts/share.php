@@ -9,6 +9,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Posts */
 
 $this->title = $model->name;
+$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>

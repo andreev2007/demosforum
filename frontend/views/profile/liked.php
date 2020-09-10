@@ -48,15 +48,6 @@ $this->title = Yii::t('app','Liked')
                                 <i class="icon-star <?= User::isStarred($post->id) ? 'fas' : 'far' ?> fa-star"
                                    style="margin-right: 2px;"></i>
                             </button>
-
-                            <div class="[ btn btn-default ]">
-                                <i class="fas fa-eye" style="margin-right: 2px;"></i>
-                                <?php if ($post->views == null) { ?>
-                                    0
-                                <?php } else { ?>
-                                    <?= $post->views ?>
-                                <?php } ?>
-                            </div>
                             <a href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $post->id])) ?>" type="button" class="[ btn btn-default ]">
                                 <i class="far fa-share-square"></i>
                             </a>
