@@ -42,7 +42,7 @@ $this->registerMetaTag([
                                         ],
                                     ])->label(false); ?>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="display: flex;justify-content: center;">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 publish-btn">
                                 <?= Html::submitButton(Yii::t('app', 'Publish') . '<i class="fab fa-telegram-plane ml-1"></i>', ['class' => 'btn btn-success mb-1 btn-sm']) ?>
                             </div>
                         </div>
