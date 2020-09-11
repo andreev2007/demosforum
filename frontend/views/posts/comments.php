@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
         <?= $form->field($comment, 'name')->textarea(['maxlength' => '450', 'rows' => '4']) ?>
 
-        <div class="form-group">
+        <div class="form-group" style="display: flex;justify-content: center;">
             <?= Html::submitButton(Html::tag('i', '', ['class' => 'fa fa-share mr-1']) . Yii::t('app', 'Commentate'), ['class' => 'btn btn-success']) ?>
         </div>
         <?php ActiveForm::end(); ?>

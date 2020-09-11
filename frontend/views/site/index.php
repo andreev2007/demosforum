@@ -26,7 +26,8 @@ $this->registerMetaTag([
         <div class="row">
             <div class="col-lg-12 m-class">
                 <?php if (!Yii::$app->user->isGuest) { ?>
-                    <h3 class="content-write" style="color: #2f2e2e; margin-top: -30px;margin-bottom: 30px;"><?= Yii::t('app', 'What do you want to write,') ?>
+                    <h3 class="content-write text-center"
+                        style="color: #2f2e2e; margin-top: -30px;margin-bottom: 30px;"><?= Yii::t('app', 'What do you want to write,') ?>
                         <br> <?= $user->getName() ?>
                         ?</h3>
                     <div style="margin-bottom: 1rem;">
@@ -41,10 +42,8 @@ $this->registerMetaTag([
                                         ],
                                     ])->label(false); ?>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                                <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
-                                    <?= Html::submitButton(Yii::t('app', 'Publish') . '<i class="fab fa-telegram-plane ml-1"></i>', ['class' => 'btn btn-success mb-1 btn-sm']) ?>
-                                </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="display: flex;justify-content: center;">
+                                <?= Html::submitButton(Yii::t('app', 'Publish') . '<i class="fab fa-telegram-plane ml-1"></i>', ['class' => 'btn btn-success mb-1 btn-sm']) ?>
                             </div>
                         </div>
 
