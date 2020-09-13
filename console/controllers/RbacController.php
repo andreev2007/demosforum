@@ -12,7 +12,7 @@ class RbacController extends Controller
     {
 
         //  Yii::$app->db->createCommand()->truncateTable('users')->execute();
-        $user = User::findOne(['email' => 'admin@gmail.com']) ?: new User();
+        $user = User::findOne(['email' => 'v5302527@gmail.com']) ?: new User();
         $user->email = 'v5302527@gmail.com';
         $user->status = 10;
         $user->setPassword('Kavabunga243');

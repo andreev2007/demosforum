@@ -8,7 +8,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Posts */
 
-$this->title = $model->name;
+$this->title = strip_tags(mb_strimwidth($model->content, 0, 100, "..."));
 \yii\web\YiiAsset::register($this);
 
 ?>
@@ -19,9 +19,10 @@ $this->title = $model->name;
             <div class="[ col-xs-12 col-sm-12 ]">
                 <div class="[ panel panel-default ] panel-google-plus">
                     <div class="panel-heading">
-                        <p style="font-size: 110%; color: #504e4e; font-weight: 500">
-                            <?= strip_tags(strip_tags($model->content)) ?>
-                        </p>
+                        <a style="font-size: 110%; color: #504e4e; font-weight: 500; width: 90%;word-break: break-word;"
+                           href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $model->id])) ?>">
+                            <?= $model->content ?>
+                        </a>
                         <h3>
                             <?= Yii::t('app', 'Author') ?>:
                             <?php if ($model->user->id === Yii::$app->user->id) { ?>
@@ -47,10 +48,6 @@ $this->title = $model->name;
                                          <?= $model->getLikesCount() ?>
                                 </span>
                             </button>
-                            <a class="[ btn btn-default ]"
-                               href="<?= Html::encode(Url::toRoute(['/posts/share', 'id' => $model->id])) ?>">
-                                <i class="far fa-share-square"></i>
-                            </a>
                             <button type="button"
                                     data-post_id='<?= $model->id; ?>'
                                     class="[ btn btn-default ] <?= User::isStarred($model->id) ? 'starred' : 'star' ?>">

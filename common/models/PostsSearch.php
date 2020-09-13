@@ -14,7 +14,7 @@ class PostsSearch extends Posts
 
     public function formName()
     {
-        return '';
+        return 's';
     }
 
     public $period;
@@ -36,7 +36,7 @@ class PostsSearch extends Posts
     public function attributeLabels()
     {
         return [
-          'period' => \Yii::t('app', 'Period'),
+            'period' => \Yii::t('app', 'Period'),
         ];
     }
 

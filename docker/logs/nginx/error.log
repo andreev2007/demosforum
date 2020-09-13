@@ -47,3 +47,13 @@
 2020/08/19 21:13:05 [emerg] 6#6: duplicate location "/admin" in /etc/nginx/conf.d/default.conf:41
 2020/08/19 21:13:32 [emerg] 6#6: duplicate location "/admin" in /etc/nginx/conf.d/default.conf:41
 2020/08/19 21:14:24 [emerg] 6#6: duplicate location "/admin" in /etc/nginx/conf.d/default.conf:41
+2020/09/11 20:39:42 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:39:43 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:39:44 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:39:45 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:39:47 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:39:49 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:39:53 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:40:00 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:40:14 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26
+2020/09/11 20:40:41 [emerg] 6#6: invalid number of arguments in "try_files" directive in /etc/nginx/conf.d/default.conf:26

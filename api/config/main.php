@@ -14,7 +14,7 @@ return [
     'controllerNamespace' => 'api\controllers',
     'components' => [
         'request' => [
-            'baseUrl' => '/api',
+           'baseUrl' => '/api',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser'
             ]
@@ -46,7 +46,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'posts'],
+                '' => 'site/index',
+                'auth' => 'site/login'
             ],
         ],
     ],
