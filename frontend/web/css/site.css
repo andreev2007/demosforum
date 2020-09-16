@@ -437,7 +437,8 @@ a.desc:after {
 
 @media screen and (min-width: 768px) {
     .home-icon {
-        margin-right: 1rem;
+        margin-right: 2rem;
+        margin-left: 1rem;
     }
 }
 
@@ -476,9 +477,37 @@ a.desc:after {
     }
 }
 
+.big-screen-dropdown {
+    margin-right: 1rem;
+}
+
+.small-screen-dropdown {
+    margin-right: 1rem;
+}
+
 @media screen and (max-width: 768px) {
     .publish-btn {
         display: flex;
         justify-content: center;
     }
 }
+
+@media screen and (max-width: 992px) {
+    .big-screen-dropdown {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 567px) {
+    .navbar-class {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .small-screen-dropdown {
+        display: none;
+    }
+}
+

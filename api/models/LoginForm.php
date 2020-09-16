@@ -11,7 +11,7 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public $username;
+    public $email;
     public $password;
 
     private $_user;
@@ -22,7 +22,9 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            [['username', 'password'], 'required'],
+            // email and password are both required
+            [['email', 'password'], 'required'],
+            // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
@@ -39,35 +41,36 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Incorrect email or password.');
             }
         }
     }
 
     /**
-     * @return Token|null
+     * @return array|null
      */
     public function auth()
     {
         if ($this->validate()) {
-            $token = new Token();
-            $token->user_id = $this->getUser()->id;
-            $token->generateToken(time() + 3600 * 24);
-            return $token->save() ? $token : null;
+            $this->_user->token = \Yii::$app->security->generateRandomString(32);
+            $this->_user->update();
+            return [
+                'token' => $this->_user->token
+                ];
         } else {
             return null;
         }
     }
 
     /**
-     * Finds user by [[username]]
+     * Finds user by [[email]]
      *
      * @return User|null
      */
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = User::findByEmail($this->email);
         }
 
         return $this->_user;

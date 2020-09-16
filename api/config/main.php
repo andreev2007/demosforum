@@ -17,11 +17,13 @@ return [
            'baseUrl' => '/api',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser'
-            ]
+            ],
+            'enableCookieValidation' => false,
+            'enableCsrfValidation' => false,
         ],
         'response' => [
             'formatters' => [
-                'json' => [
+                \yii\web\Response::FORMAT_JSON => [
                     'class' => 'yii\web\JsonResponseFormatter',
                     'prettyPrint' => YII_DEBUG,
                     'encodeOptions' => JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
@@ -47,7 +49,19 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
-                'auth' => 'site/login'
+                'POST login' => 'site/login',
+                'POST signup' => 'site/sign-up',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'posts',
+                    'extraPatterns' => [
+                        'POST like/{id}' => 'like',
+                        'GET {id}/view' => 'view',
+                        'POST un-like/{id}' => 'un-like',
+                        'DELETE {id}/delete' => 'delete',
+                    ]
+                ]
             ],
         ],
     ],

@@ -94,8 +94,8 @@ $this->title = strip_tags(mb_strimwidth($model->content, 0, 100, "..."));
         </div>
         <?php if (Yii::$app->user->id === $model->user->id) { ?>
             <p>
-                <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                <?= Html::a('<i class="fas fa-pencil-alt mr-1"></i>'.Yii::t('app','Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-trash-alt mr-1"></i>'.Yii::t('app','Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => 'Are you sure you want to delete this item?',

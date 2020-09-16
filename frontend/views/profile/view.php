@@ -88,7 +88,7 @@ $this->title = $user->first_name
                            href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>">
                             <?= mb_strimwidth($question->content, 0, 200, "..."); ?>
                         </a>
-                        <h5><span><?= Yii::t('app', 'Date') ?></span> - <span><?= $question->getDate() ?></span></h5>
+                        <h6><span style="font-size: 90%;color: grey"><?= Yii::t('app', 'Date') ?></span> - <span style="font-size: 90%;color: grey"><?= $question->getDate() ?></span></h6>
                     </a>
                     <?php if (!Yii::$app->user->isGuest) { ?>
                         <a href="<?= Html::encode(Url::toRoute(['/posts/view', 'id' => $question->id])) ?>"

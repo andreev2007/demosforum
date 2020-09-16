@@ -12,6 +12,10 @@ use common\models\User;
 use common\models\UserSaved;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+use yii\filters\AccessControl;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
+use yii\helpers\Url;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\data\ActiveDataProvider;
@@ -21,6 +25,7 @@ use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\web\ServerErrorHttpException;
 
 /**
  * Site controller
@@ -28,6 +33,18 @@ use yii\web\Response;
 class PostsController extends ActiveController
 {
     public $modelClass = 'common\models\Posts';
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+
+       $behaviors['authenticator']['authMethods'] = [
+            HttpBasicAuth::className(),
+            HttpBearerAuth::className(),
+        ];
+
+        return $behaviors;
+    }
 
     public function beforeAction($action)
     {
@@ -38,7 +55,7 @@ class PostsController extends ActiveController
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['create'], $actions['update'], $actions['delete']);
+
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
 
         return $actions;
@@ -46,8 +63,8 @@ class PostsController extends ActiveController
 
     public function prepareDataProvider()
     {
-        $searchModel = new PostsSearch();
-        return ['good'];
+        $searchModel = new PostsSearch;
+        return $searchModel->search(Yii::$app->request->queryParams);
     }
 
     public function checkAccess($action, $model = null, $params = [])
@@ -60,34 +77,32 @@ class PostsController extends ActiveController
     }
 
     public function actionCreate(){
-
+        $model = new Posts();
+        $model->created_by = Yii::$app->user->id;
+        $model->load(Yii::$app->getRequest()->getBodyParams(), '');
+        if ($model->save()) {
+            $response = Yii::$app->getResponse();
+            $response->setStatusCode(201);
+            $id = implode(',', array_values($model->getPrimaryKey(true)));
+            $response->getHeaders()->set('Location', Url::toRoute(['view', 'id' => $id], true));
+        } elseif (!$model->hasErrors()) {
+            throw new ServerErrorHttpException('Failed to create the object for unknown reason');
+        }
+        return $model;
     }
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
-  
 
     public function actionDelete($id)
     {
         if ($this->findModel($id)->created_by !== Yii::$app->user->id) {
-            Yii::$app->session->setFlash('warning', 'Извините, но мы не нашли что вы хотели');
-            return $this->redirect('/site/index');
+            return [
+                'message' => 'Error'
+            ];
         } else {
             $this->findModel($id)->delete();
+            return [
+                'message' => 'Successfully deleted'
+            ];
         }
-        return $this->redirect(['index']);
     }
 
     public function actionView($id)
@@ -149,46 +164,48 @@ class PostsController extends ActiveController
 
     public function actionLike($id)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
         if ($model = PostLikes::findOne($params)) {
             Yii::$app->response->setStatusCode(404);
             return [
-                'likesCount' => Posts::findOne($id)->getLikesCount()
+                'likesCount' => Posts::findOne($id)->getLikesCount(),
+                'message' => 'bad'
             ];
         } else {
             $model = new PostLikes($params);
             $model->save();
             Yii::$app->response->setStatusCode(201);
             return [
-                'likesCount' => Posts::findOne($id)->getLikesCount()
+                'likesCount' => Posts::findOne($id)->getLikesCount(),
+                'message' => 'good'
             ];
         }
     }
 
     public function actionUnLike($id)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
         if ($model = PostLikes::findOne($params)) {
             $model->delete();
             Yii::$app->response->setStatusCode(201);
             return [
-                'likesCount' => Posts::findOne($id)->getLikesCount()
+                'likesCount' => Posts::findOne($id)->getLikesCount(),
+                'message' => 'good'
             ];
         } else {
             Yii::$app->response->setStatusCode(404);
             return [
-                'likesCount' => Posts::findOne($id)->getLikesCount()
+                'likesCount' => Posts::findOne($id)->getLikesCount(),
+                'message' => 'bad'
+
             ];
         }
 
     }
-
-
+    
     public function actionStar($id)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
         if ($model = UserSaved::findOne($params)) {
             Yii::$app->response->setStatusCode(404);
@@ -201,7 +218,7 @@ class PostsController extends ActiveController
 
     public function actionUnStar($id)
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
         if ($model = UserSaved::findOne($params)) {
             $model->delete();

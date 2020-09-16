@@ -51,28 +51,30 @@ $this->registerMetaTag([
                     </div>
                 <?php } ?>
 
-                <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
-                    <h5 class="mb-2"><?= Yii::t('app', 'Posts') ?></h5>
-                    <?php $form = ActiveForm::begin([
-                        'action' => '/',
-                        'options' =>
-                            [
-                                'id' => 'search-form',
-                            ],
-                        'method' => "GET",
-                    ]); ?>
-                    <?= $form->field($searchModel, 'period')->dropDownList([
-                        null => Yii::t('app', 'All time'),
-                        3600 * 24 => Yii::t('app', 'Day'),
-                        3600 * 168 => Yii::t('app', 'Week'),
-                        3600 * 720 => Yii::t('app', 'Month'),
-                    ], [
-                        'onchange' => 'document.getElementById("search-form").submit()',
-                    ])->label(false); ?>
-                    <?php ActiveForm::end(); ?>
-                </div>
             </div>
+            <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4 m-class">
+                <h5 class="mb-2"><?= Yii::t('app', 'Posts') ?></h5>
+                <?php $form = ActiveForm::begin([
+                    'action' => '/',
+                    'options' =>
+                        [
+                            'id' => 'search-form',
+                        ],
+                    'method' => "GET",
+                ]); ?>
+                <?= $form->field($searchModel, 'period')->dropDownList([
+                    null => Yii::t('app', 'All time'),
+                    3600 * 24 => Yii::t('app', 'Day'),
+                    3600 * 168 => Yii::t('app', 'Week'),
+                    3600 * 720 => Yii::t('app', 'Month'),
+                ], [
+                    'onchange' => 'document.getElementById("search-form").submit()',
+                ])->label(false); ?>
+                <?php ActiveForm::end(); ?>
+            </div>
+
         </div>
+
         <div class="container">
             <div class="row">
                 <?php foreach ($posts as $question): ?>

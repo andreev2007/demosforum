@@ -34,23 +34,17 @@ use yii\widgets\ActiveForm;
                             <p>
                                 <a class="float-left"
                                    href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
-                                    <strong><?= $review->user->first_name . ' ' . $review->user->last_name ?></strong>
+                                    <?php if ($review->user->avatar) { ?>
+                                        <img class="profile-image" src="<?= $review->user->avatar ?>" alt=""/>
+                                    <?php } else { ?>
+                                        <img class="profile-image" src="https://vk.com/images/camera_50.png?ava=1"/>
+                                    <?php } ?>
+                                    <strong class="mt-2"><?= $review->user->first_name . ' ' . $review->user->last_name ?></strong>
                                 </a>
                                 <span class="float-right" style="color: grey">
                                     <?= $review->getDate() ?>
                                 </span>
-                                <?php if ($review->user->id === Yii::$app->user->id) { ?>
-                                    <span class="float-left ml-2">
-                                         <?= Html::a(Yii::t('app', 'Update'), ['comment-update', 'id' => $review->id], ['class' => 'btn btn-primary btn-sm']) ?>
-                                         <?= Html::a(Yii::t('app', 'Delete'), ['comment-delete', 'id' => $review->id], [
-                                             'class' => 'btn btn-danger btn-sm',
-                                             'data' => [
-                                                 'confirm' => 'Are you sure you want to delete this item?',
-                                                 'method' => 'post',
-                                             ],
-                                         ]) ?>
-                                    </span>
-                                <?php } ?>
+
                             </p>
                             <div class="clearfix"></div>
                             <p><?= $review->name ?></p>
@@ -109,6 +103,18 @@ use yii\widgets\ActiveForm;
 
                             <?php ActiveForm::end(); ?>
                         </div>
+                        <?php if ($review->user->id === Yii::$app->user->id) { ?>
+                            <span class="float-left ml-2 mb-3">
+                                         <?= Html::a(Yii::t('app', '<i class="fas fa-pencil-alt mr-1"></i>'.Yii::t('app', 'Update')), ['comment-update', 'id' => $review->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                                         <?= Html::a(Yii::t('app', '<i class="fas fa-trash-alt mr-1"></i>' . Yii::t('app', 'Delete')), ['comment-delete', 'id' => $review->id], [
+                                             'class' => 'btn btn-danger btn-sm',
+                                             'data' => [
+                                                 'confirm' => 'Are you sure you want to delete this item?',
+                                                 'method' => 'post',
+                                             ],
+                                         ]) ?>
+                            </span>
+                        <?php } ?>
                     </div>
                     <?php /** @var \common\models\Comments $review */
                     foreach ($review->children as $parent_comment) { ?>
@@ -117,13 +123,17 @@ use yii\widgets\ActiveForm;
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p>
-                                            <span class="float-right" style="color: grey">
-                                            <?= $review->getDate() ?>
-                                        </span>
                                             <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $parent_comment->user->id])) ?>">
-                                                <strong><?= $parent_comment->user->first_name . ' ' . $parent_comment->user->last_name ?></strong></a>
-                                        </p>
-
+                                                <?php if ($parent_comment->user->avatar) { ?>
+                                                    <img class="profile-image" src="<?= $parent_comment->user->avatar ?>" alt=""/>
+                                                <?php } else { ?>
+                                                    <img class="profile-image" src="https://vk.com/images/camera_50.png?ava=1"/>
+                                                <?php } ?>
+                                                <strong class="mt-2"><?= $parent_comment->user->first_name . ' ' . $parent_comment->user->last_name ?></strong>
+                                            </a>
+                                            <span class="float-right" style="color: grey">
+                                             <?= $parent_comment->getDate() ?>
+                                            </span>
                                         </p>
                                         <p><?= $parent_comment->name ?></p>
                                         <?php if (!Yii::$app->user->isGuest) { ?>
@@ -150,6 +160,18 @@ use yii\widgets\ActiveForm;
                                             </a>
                                         <?php } ?>
                                     </div>
+                                    <?php if ($parent_comment->user->id === Yii::$app->user->id) { ?>
+                                        <span class="float-left ml-2">
+                                         <?= Html::a(Yii::t('app', '<i class="fas fa-pencil-alt mr-1"></i>'.Yii::t('app', 'Update')), ['comment-update', 'id' => $parent_comment->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                                         <?= Html::a(Yii::t('app', '<i class="fas fa-trash-alt mr-1"></i>'.Yii::t('app', 'Delete')), ['comment-delete', 'id' => $parent_comment->id], [
+                                             'class' => 'btn btn-danger btn-sm',
+                                             'data' => [
+                                                 'confirm' => 'Are you sure you want to delete this item?',
+                                                 'method' => 'post',
+                                             ],
+                                         ]) ?>
+                                    </span>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

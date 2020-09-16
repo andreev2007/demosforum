@@ -133,6 +133,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
             [['email', 'first_name', 'last_name','phone','telegram','whatsapp'], 'safe'],
+            ['token', 'string'],
         ];
     }
 
@@ -149,7 +150,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        return static::findOne(['token' => $token, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use common\models\query\PostQuery;
+use yii\base\Model;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -14,12 +15,8 @@ use yii\db\ActiveRecord;
  * @property integer $expired_at
  * @property string $token
  */
-class Token extends ActiveRecord
+class Token extends Model
 {
-    public static function tableName()
-    {
-        return '{{%token}}';
-    }
 
     public function generateToken($expire)
     {

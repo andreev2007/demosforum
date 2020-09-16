@@ -12,7 +12,7 @@ $this->title = mb_strimwidth(strip_tags(strip_tags($model->content)), 0, 50, '..
 
 $this->registerMetaTag([
     'name' => 'title',
-    'content' => $model->content . 'Demos Forum, Демос Форум'
+    'content' => $model->content . 'Demos Forum, Демос Форум, Вуьщы Ащкгь'
 ])
 ?>
 
@@ -101,8 +101,8 @@ $this->registerMetaTag([
         </div>
         <?php if (Yii::$app->user->id === $model->user->id) { ?>
             <p>
-                <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                <?= Html::a(Yii::t('app','<i class="fas fa-pencil-alt mr-1"></i>'. Yii::t('app','Update')), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app', '<i class="fas fa-trash-alt mr-1"></i>'.Yii::t('app','Delete')), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => 'Are you sure you want to delete this item?',

@@ -10,9 +10,11 @@ $this->title = Yii::t('app','Update Profile');
 ?>
 <div class="posts-update">
 
-    <h1 class="text-center mb-5"><?= Html::encode($this->title) ?></h1>
+    <h1 class="text-center mb-3" style="margin-top: -50px;"><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <h6 class="mb-3"><?= Yii::t('app','Upload Image') ?></h6>
 
     <?= $form->field($model, 'avatarUpload')->fileInput()->label(false) ?>
 

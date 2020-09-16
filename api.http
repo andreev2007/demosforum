@@ -1,0 +1,26 @@
+POST http://localhost:5675/api/site/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "another@gmail.com",
+  "password": "Kavabunga243"
+}
+###
+
+POST http://localhost:5675/api/site/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "another@gmail.com",
+  "first_name": "Vanya",
+  "last_name": "Pupkin",
+  "password": "Kavabunga243"
+}
+###
+DELETE http://localhost:5675/api/posts/1/delete
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer Ch6lM8qpSTUo_D4X8pwyo-MLxauSYoHg
+
