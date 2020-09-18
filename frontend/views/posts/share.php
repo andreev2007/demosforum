@@ -30,7 +30,7 @@ $this->title = strip_tags(mb_strimwidth($model->content, 0, 100, "..."));
                             <?php } else { ?>
                                 <a href="<?= Html::encode(\yii\helpers\Url::toRoute(['/profile/view', 'id' => $model->user->id])) ?>">
 
-                                    <?= $model->user->username ?>
+                                    <?= $model->user->first_name . ' ' . $model->user->last_name ?>
                                 </a>
                             <?php } ?>
                         </h3>
@@ -122,7 +122,7 @@ $this->title = strip_tags(mb_strimwidth($model->content, 0, 100, "..."));
         <?php
         foreach ($user->getSubscribers()->all() as $subscriber) {
             echo Html::checkbox('reposters[]',
-                in_array($subscriber->id, (array)$repostersId), ['label' => $subscriber->username, 'value' => $subscriber->id]);
+                in_array($subscriber->id, (array)$repostersId), ['label' => $subscriber->first_name . ' ' . $subscriber->last_name, 'value' => $subscriber->id]);
         }
         ?>
     </div>

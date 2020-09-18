@@ -92,7 +92,7 @@ class PostsController extends Controller
             $comment->delete();
             Yii::$app->session->setFlash('success', Yii::t('app', 'Your comment was deleted'));
         }
-        return $this->redirect(['/view', 'id' => $comment->id]);
+        return $this->redirect(['/posts/view', 'id' => $comment->id]);
 
     }
 
@@ -174,7 +174,7 @@ class PostsController extends Controller
         }
 
         if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
-            return $this->redirect(['view', 'id' => $post->id]);
+            return $this->redirect(['/posts/view', 'id' => $post->id]);
         }
         return $this->render('update_comment', [
             'model' => $comment

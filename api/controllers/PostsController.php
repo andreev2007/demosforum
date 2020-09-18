@@ -38,9 +38,33 @@ class PostsController extends ActiveController
     {
         $behaviors = parent::behaviors();
 
-       $behaviors['authenticator']['authMethods'] = [
+        $behaviors['authenticator']['only'] = [
+            'create',
+            'create-comment',
+            'update',
+            'delete',
+            'share',
+            'like',
+            'un-like',
+            'star',
+            'un-star',
+            'comment-update',
+            'comment-delete'
+        ];
+        $behaviors['authenticator']['authMethods'] = [
             HttpBasicAuth::className(),
             HttpBearerAuth::className(),
+        ];
+
+        $behaviors['access'] = [
+            'class' => AccessControl::className(),
+            'only' => ['create', 'share', 'create-comment'],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+            ],
         ];
 
         return $behaviors;
@@ -57,6 +81,7 @@ class PostsController extends ActiveController
         $actions = parent::actions();
 
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+        unset($actions['view']);
 
         return $actions;
     }
@@ -69,14 +94,47 @@ class PostsController extends ActiveController
 
     public function checkAccess($action, $model = null, $params = [])
     {
-        if (in_array($action, ['update', 'delete'])) {
-            if(!Yii::$app->authManager->getRole('admin')) {
-                throw new ForbiddenHttpException('Forbidden');
+        if (in_array($action, ['update', 'delete', 'comment-update', 'comment-delete'])) {
+            Yii::error($model->created_by);
+            Yii::error(Yii::$app->user->id);
+            if (Yii::$app->user->id != $model->created_by) {
+                throw new ForbiddenHttpException();
+            }
+        }
+        if (in_array($action, ['like', 'un-like', 'star', 'un-star', 'share'])) {
+            if (Yii::$app->user->isGuest) {
+                throw new ForbiddenHttpException();
             }
         }
     }
 
-    public function actionCreate(){
+    public function actionCommentDelete($id)
+    {
+        $comment = Comments::findOne($id);
+        if ($comment->created_by !== Yii::$app->user->id) {
+            throw new ForbiddenHttpException('Forbidden');
+        } else {
+            $comment->delete();
+            return 'Success';
+        }
+    }
+
+    public function actionCommentUpdate($id)
+    {
+        $comment = Comments::findOne($id);
+        $comment->load(Yii::$app->getRequest()->getBodyParams(), '');
+        if ($comment->created_by == Yii::$app->user->id) {
+            if ($comment->save()) {
+                return $comment;
+            }
+        } else {
+            throw new ForbiddenHttpException('Forbidden');
+        }
+    }
+
+
+    public function actionCreate()
+    {
         $model = new Posts();
         $model->created_by = Yii::$app->user->id;
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
@@ -91,42 +149,36 @@ class PostsController extends ActiveController
         return $model;
     }
 
-    public function actionDelete($id)
-    {
-        if ($this->findModel($id)->created_by !== Yii::$app->user->id) {
-            return [
-                'message' => 'Error'
-            ];
-        } else {
-            $this->findModel($id)->delete();
-            return [
-                'message' => 'Successfully deleted'
-            ];
-        }
-    }
-
     public function actionView($id)
     {
         $post = Posts::findOne($id);
-        $comment = Comments::addComment($id);
         $comments = $post->getComments()
             ->with('children')
             ->andWhere(['status' => 10])
             ->andWhere(['parent_id' => null])->orderBy(['created_at' => SORT_DESC])->all();
 
-        if ($comment->load(Yii::$app->request->post()) && $comment->save()) {
-            Yii::$app->session->setFlash('success', ' Комментарий успешно сохранен!');
-            return $this->refresh();
+        $likesCount = $post->getLikesCount();
+        $commentsCount = $post->getComments()->count();
+
+        return [
+            'model' => $post,
+            'likesCount' => $likesCount,
+            'commentsCount' => $commentsCount,
+            'comments' => $comments,
+        ];
+    }
+
+    public function actionCreateComment($id)
+    {
+        $comment = Comments::addComment($id);
+
+        if ($comment->load(Yii::$app->request->post(),'') && $comment->save()) {
+            Yii::$app->response->setStatusCode(201);
+            return 'Success';
         } else {
-            Yii::error($comment->errors);
+           return $comment;
         }
 
-        Yii::error($comment->toArray());
-        return $this->render('view', [
-            'model' => $post,
-            'comment' => $comment,
-            'comments' => $comments,
-        ]);
     }
 
     public function actionShare($id)
@@ -139,47 +191,32 @@ class PostsController extends ActiveController
         }
 
         $repostersId = Reposts::find()->where(['post_id' => $id])->select('owner_id')->column();
-        return $this->render('share', [
+        return [
             'model' => $post,
             'repostersId' => $repostersId,
-        ]);
+        ];
     }
 
-    public function actionUpdate($id)
-    {
-        $post = Posts::findOne($id);
-        if ($post->created_by !== Yii::$app->user->id) {
-            Yii::$app->session->setFlash('warning', 'Извините, но мы не нашли что вы хотели');
-            return $this->redirect('/site/index');
-        }
-        $post->setScenario('insert');
-
-        if ($post->load(Yii::$app->request->post()) && $post->save()) {
-            return $this->redirect(['view', 'id' => $post->id]);
-        }
-        return $this->render('update', [
-            'model' => $post
-        ]);
-    }
 
     public function actionLike($id)
     {
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
+
         if ($model = PostLikes::findOne($params)) {
             Yii::$app->response->setStatusCode(404);
             return [
                 'likesCount' => Posts::findOne($id)->getLikesCount(),
-                'message' => 'bad'
             ];
         } else {
             $model = new PostLikes($params);
             $model->save();
+            Yii::error($model->toArray());
             Yii::$app->response->setStatusCode(201);
             return [
                 'likesCount' => Posts::findOne($id)->getLikesCount(),
-                'message' => 'good'
             ];
         }
+
     }
 
     public function actionUnLike($id)
@@ -190,22 +227,18 @@ class PostsController extends ActiveController
             Yii::$app->response->setStatusCode(201);
             return [
                 'likesCount' => Posts::findOne($id)->getLikesCount(),
-                'message' => 'good'
             ];
         } else {
             Yii::$app->response->setStatusCode(404);
             return [
                 'likesCount' => Posts::findOne($id)->getLikesCount(),
-                'message' => 'bad'
-
             ];
         }
 
     }
-    
+
     public function actionStar($id)
     {
-        
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
         if ($model = UserSaved::findOne($params)) {
             Yii::$app->response->setStatusCode(404);
@@ -218,7 +251,7 @@ class PostsController extends ActiveController
 
     public function actionUnStar($id)
     {
-        
+
         $params = ['post_id' => $id, 'user_id' => Yii::$app->user->id];
         if ($model = UserSaved::findOne($params)) {
             $model->delete();

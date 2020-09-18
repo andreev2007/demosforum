@@ -56,10 +56,35 @@ return [
                     'pluralize' => false,
                     'controller' => 'posts',
                     'extraPatterns' => [
-                        'POST like/{id}' => 'like',
+                        'POST {id}/like' => 'like',
+                        'DELETE {id}/un-like' => 'un-like',
+                        'POST {id}/star' => 'star',
+                        'DELETE {id}/un-star' => 'un-star',
                         'GET {id}/view' => 'view',
-                        'POST un-like/{id}' => 'un-like',
-                        'DELETE {id}/delete' => 'delete',
+                        'PUT {id}/comment-update' => 'comment-update',
+                        'DELETE {id}/comment-delete' => 'comment-delete',
+                        'PUT {id}/delete' => 'delete',
+                        'PUT {id}/update' => 'update',
+                        'POST {id}/share' => 'share',
+                        'POST {id}/create-comment' => 'create-comment',
+                    ]
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'profile',
+                    'extraPatterns' => [
+                        'PUT {id}/update' => 'update',
+                        'POST {id}/subscribe' => 'subscribe',
+                        'DELETE {id}/un-subscribe' => 'un-subscribe',
+                        'GET {id}/view' => 'view',
+                        'GET subscribers' => 'subscribers',
+                        'GET subscribed' => 'subscribed',
+                        'GET commented' => 'commented',
+                        'GET starred' => 'starred',
+                        'GET settings' => 'settings',
+                        'GET liked' => 'liked',
+                        'GET view' => 'view',
                     ]
                 ]
             ],
