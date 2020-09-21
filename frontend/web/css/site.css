@@ -435,11 +435,14 @@ a.desc:after {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 373px) {
     .home-icon {
         margin-right: 2rem;
-        margin-left: 1rem;
     }
+}
+
+.home-icon {
+    margin-left: 1rem;
 }
 
 .search-btn {
@@ -498,11 +501,9 @@ a.desc:after {
     }
 }
 
-@media screen and (min-width: 567px) {
-    .navbar-class {
-        margin-left: 3rem;
-        margin-right: 3rem;
-    }
+.navbar-class {
+    margin-left: 3rem;
+    margin-right: 3rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -511,3 +512,9 @@ a.desc:after {
     }
 }
 
+@media screen and (max-width: 577px) {
+    .period-block {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}

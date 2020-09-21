@@ -34,7 +34,7 @@ $this->registerMetaTag([
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
                         <div class="row mt-3 content-write">
-                            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
                                 <?= $form->field($post, 'content')->widget(\common\widgets\RedactorCode::className(),
                                     [
                                         'clientOptions' => [
@@ -42,7 +42,7 @@ $this->registerMetaTag([
                                         ],
                                     ])->label(false); ?>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 publish-btn">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 publish-btn">
                                 <?= Html::submitButton(Yii::t('app', 'Publish') . '<i class="fab fa-telegram-plane ml-1"></i>', ['class' => 'btn btn-success mb-1 btn-sm']) ?>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ $this->registerMetaTag([
                 <?php } ?>
 
             </div>
-            <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4 m-class">
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 m-class period-block">
                 <h5 class="mb-2"><?= Yii::t('app', 'Posts') ?></h5>
                 <?php $form = ActiveForm::begin([
                     'action' => '/',

@@ -32,6 +32,9 @@ use yii\widgets\ActiveForm;
                     <div class="row">
                         <div class="col-md-12 reply-js">
                             <p>
+                                <span class="float-right" style="color: grey">
+                                    <?= $review->getDate() ?>
+                                </span>
                                 <a class="float-left"
                                    href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $review->user->id])) ?>">
                                     <?php if ($review->user->avatar) { ?>
@@ -41,9 +44,6 @@ use yii\widgets\ActiveForm;
                                     <?php } ?>
                                     <strong class="mt-2"><?= $review->user->first_name . ' ' . $review->user->last_name ?></strong>
                                 </a>
-                                <span class="float-right" style="color: grey">
-                                    <?= $review->getDate() ?>
-                                </span>
 
                             </p>
                             <div class="clearfix"></div>
@@ -123,6 +123,10 @@ use yii\widgets\ActiveForm;
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p>
+
+                                            <span class="float-right" style="color: grey">
+                                             <?= $parent_comment->getDate() ?>
+                                            </span>
                                             <a href="<?= Html::encode(Url::toRoute(['/profile/view', 'id' => $parent_comment->user->id])) ?>">
                                                 <?php if ($parent_comment->user->avatar) { ?>
                                                     <img class="profile-image" src="<?= $parent_comment->user->avatar ?>" alt=""/>
@@ -131,9 +135,6 @@ use yii\widgets\ActiveForm;
                                                 <?php } ?>
                                                 <strong class="mt-2"><?= $parent_comment->user->first_name . ' ' . $parent_comment->user->last_name ?></strong>
                                             </a>
-                                            <span class="float-right" style="color: grey">
-                                             <?= $parent_comment->getDate() ?>
-                                            </span>
                                         </p>
                                         <p><?= $parent_comment->name ?></p>
                                         <?php if (!Yii::$app->user->isGuest) { ?>

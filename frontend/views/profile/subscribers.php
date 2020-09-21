@@ -4,7 +4,7 @@ use common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'Subscribed');
+$this->title = Yii::t('app', 'Subscribers');
 ?>
 <h1 class="text-center mb-3" style="margin-top: -50px;"><?= $this->title ?></h1>
 

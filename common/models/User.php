@@ -312,7 +312,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getPosts()
     {
-        return $this->hasMany(Posts::className(), ['created_by' => 'id']);
+        return $this->hasMany(Posts::className(), ['created_by' => 'id'])->orderBy(['created_at' => SORT_DESC]);
     }
 
     public function getSubscribers()

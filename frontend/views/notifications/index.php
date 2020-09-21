@@ -27,17 +27,14 @@ $this->title = Yii::t('app', 'Notifications');
                     <a href="<?= Url::toRoute(['/posts/view', 'id' => $notification->post->id]) ?>">
                         <?= mb_strimwidth($notification->post->content, 0, 20, "...") ?>
                     </a>
-                    <?php if ($notification->post->getDate() !== null) { ?>
+                    <?php if (isset($notification->post->created_at)) { ?>
                     <p style="font-size: 12px; color: grey; float: right"><?= $notification->post->getDate() ?></p>
-                    <?php } else { ?>
-                    <p style="font-size: 12px; color: grey; float: right"><?= date('Y-m-d H:M:S') ?></p>
                     <?php } ?>
                 </div>
             <?php } ?>
 
         </div>
     </div>
-
 
 
 </div>
