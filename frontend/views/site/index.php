@@ -55,7 +55,7 @@ $this->registerMetaTag([
             <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 m-class period-block">
                 <h5 class="mb-2"><?= Yii::t('app', 'Posts') ?></h5>
                 <?php $form = ActiveForm::begin([
-                    'action' => '/',
+                    'action' => '/site/index',
                     'options' =>
                         [
                             'id' => 'search-form',

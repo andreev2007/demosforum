@@ -60,7 +60,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'site/auth/<authclient:.+>' => 'site/auth',
             ],
         ],
     ],

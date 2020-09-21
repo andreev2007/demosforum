@@ -14,7 +14,7 @@ class PostsSearch extends Posts
 
     public function formName()
     {
-        return 's';
+        return '';
     }
 
     public $period;
